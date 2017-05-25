@@ -1,0 +1,29 @@
+version: '2.1'
+
+services:
+
+  api:
+    image: pam79/laravel-php-fpm
+    container_name: api
+    working_dir: /usr/share/nginx/html
+    volumes:
+      - ./:/usr/share/nginx/html:z
+
+  nginx:
+    image: nginx:1.10
+    container_name: nginx
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    volumes_from:
+      - api
+    environment:
+      - "VIRTUAL_HOST=phpfpm.dev"
+    tty: true
+    stdin_open: true
+    networks: 
+      - default
+
+networks:
+  default:
+    external:
+      name: proxy-tier
