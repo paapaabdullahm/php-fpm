@@ -5,8 +5,10 @@ MAINTAINER Abdullah Morgan <paapaabdullahm@gmail.com>
 ENV NPM_CONFIG_LOGLEVEL info
 ENV NODE_VERSION 8.9.4
 
-RUN apt-get update && apt upgrade -y \
-	&& apt-get install -y apt-utils \
+# Add PHP-FPM and other essential pkgs & libs
+RUN echo "deb http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/ xenial main" >> /etc/apt/sources.list;
+    apt update && apt upgrade -y \
+	&& apt install -y apt-utils \
 	&& apt install -y libicu-dev \
 	&& docker-php-ext-install -j$(nproc) intl \
 	&& apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng12-dev \
@@ -29,7 +31,7 @@ RUN apt-get update && apt upgrade -y \
     && usermod -u 1000 www-data \
     && rm -rf /var/lib/apt/lists/*
     
-############################# Add Node JS ##################################
+# Add Node JS
 RUN groupadd --gid 2000 node \
     && useradd --uid 2000 --gid node --shell /bin/bash --create-home node \
     && set -ex \
