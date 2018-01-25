@@ -14,7 +14,7 @@ These features include:
 - Support for a "slowlog"
 - Enhancements to FastCGI, such as fastcgi_finish_request() - a special function to finish request & flush all data while continuing to do something time-consuming (video converting, stats processing, etc.)
 
-## Extensions enabled in addition to core
+### Extensions enabled in addition to core
 
 [PHP Modules]                                                       
 1. bcmath                                        
