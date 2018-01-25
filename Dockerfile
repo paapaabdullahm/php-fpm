@@ -18,7 +18,7 @@ RUN wget http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.5
 	&& docker-php-ext-install -j$(nproc) gd \
 	&& apt install -y \
         libmcrypt-dev \
-        php-apc \
+        #php-apc \
         libxml2-dev \
         libldb-dev \
         libldap2-dev \
