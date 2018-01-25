@@ -12,17 +12,20 @@ RUN wget http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.5
     && apt update && apt upgrade -y \
 	&& apt install -y apt-utils \
 	&& apt install -y libicu-dev \
-	&& docker-php-ext-install -j$(nproc) intl \
-	&& apt install -y libfreetype6-dev libjpeg62-turbo-dev \
+	#
+    && docker-php-ext-install -j$(nproc) intl \
+	#
+    && apt install -y libfreetype6-dev libjpeg62-turbo-dev \
 	&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-	&& docker-php-ext-install -j$(nproc) gd \
+	#
+    && docker-php-ext-install -j$(nproc) gd \
+    #
 	&& apt install -y \
         libmcrypt-dev \
         #php-apc \
         libxml2-dev \
         libldb-dev \
         libldap2-dev \
-        libxml2-dev \
         libssl-dev \
         libxslt-dev \
         libpq-dev \
@@ -51,16 +54,74 @@ RUN wget http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.5
         libmagickwand-dev \
         --no-install-recommends \
 	&& ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/ \
-	&& docker-php-ext-install mcrypt opcache \
+    #
+	&& docker-php-ext-install \
+    mcrypt \
+    opcache \
+    #
 	&& yes | pecl install xdebug imagick && docker-php-ext-enable imagick \
 	&& echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && docker-php-ext-install soap ftp xsl bcmath calendar ctype dba dom zip session \
+    #
+    && docker-php-ext-install \
+        soap \
+        #ftp \
+        xsl \
+        bcmath \
+        #calendar \
+        #ctype \
+        dba \
+        dom \
+        zip \
+        #session \
+    #
     && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu \
-    && docker-php-ext-install ldap json hash sockets pdo mbstring gmp tokenizer pgsql pdo_pgsql pdo_mysql pdo_sqlite intl mysqli \
+    #
+    && docker-php-ext-install \
+        ldap \
+        #json \
+        #hash \
+        #sockets \
+        pdo \
+        mbstring \
+        #gmp \
+        #tokenizer \
+        pgsql \
+        pdo_pgsql \
+        pdo_mysql \
+        pdo_sqlite \
+        intl mysqli \
+    #
     && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
-    && docker-php-ext-install imap gd curl exif fileinfo gettext iconv interbase pdo_firebird opcache pcntl phar posix pspell recode shmop simplexml sysvmsg sysvsem sysvshm tidy wddx xml xmlrpc xmlwriter \
+    #
+    && docker-php-ext-install \
+        imap \
+        gd \
+        curl \
+        #exif \
+        #fileinfo \
+        gettext \
+        #iconv \
+        interbase \
+        pdo_firebird \
+        opcache \
+        #pcntl \
+        #phar \
+        posix \
+        pspell \
+        recode \
+        #shmop \
+        simplexml \
+        #sysvmsg \
+        #sysvsem \
+        #sysvshm \
+        tidy \
+        wddx \
+        xml \
+        xmlrpc \
+        xmlwriter \
+    #
     && yes | pecl install mongodb \
     && echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/ext-mongodb.ini \
     && usermod -u 1000 www-data \
