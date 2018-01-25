@@ -27,7 +27,6 @@ RUN wget http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.5
         libxslt-dev \
         libpq-dev \
         libmhash-dev \
-        postgresql-client-9.3 \
         mysql-client \
         libsqlite3-dev \
         libsqlite3-0 \
