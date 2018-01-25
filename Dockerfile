@@ -6,15 +6,49 @@ ENV NPM_CONFIG_LOGLEVEL info
 ENV NODE_VERSION 8.9.4
 
 # Add PHP-FPM and other essential pkgs & libs
-RUN echo "deb http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/ xenial main" >> /etc/apt/sources.list;
-    apt-get update && apt upgrade -y \
-	&& apt-get install -y apt-utils \
-	&& apt-get install -y libicu-dev \
+RUN echo "deb http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/ xenial main" >> /etc/apt/sources.list \
+    && apt update && apt upgrade -y \
+	&& apt install -y apt-utils \
+	&& apt install -y libicu-dev \
 	&& docker-php-ext-install -j$(nproc) intl \
-	&& apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng12-dev \
+	&& apt install -y libfreetype6-dev libjpeg62-turbo-dev libpng12-dev \
 	&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
 	&& docker-php-ext-install -j$(nproc) gd \
-	&& apt-get install -y libmcrypt-dev php-apc libxml2-dev libldb-dev libldap2-dev libxml2-dev libssl-dev libxslt-dev libpq-dev libmhash-dev postgresql-client mysql-client libsqlite3-dev libsqlite3-0 libc-client-dev libkrb5-dev curl libcurl3 libcurl3-dev firebird-dev libpspell-dev aspell-en aspell-de libtidy-dev librecode0 librecode-dev libgmp-dev libc6 libgmp10 ucf re2c file libmagickwand-dev --no-install-recommends \
+	&& apt install -y \
+        libmcrypt-dev \
+        php-apc \
+        libxml2-dev \
+        libldb-dev \
+        libldap2-dev \
+        libxml2-dev \
+        libssl-dev \
+        libxslt-dev \
+        libpq-dev \
+        libmhash-dev \
+        postgresql-client \
+        mysql-client \
+        libsqlite3-dev \
+        libsqlite3-0 \
+        libc-client-dev \
+        libkrb5-dev \
+        curl \
+        libcurl3 \
+        libcurl3-dev \
+        firebird-dev \
+        libpspell-dev \
+        aspell-en \
+        aspell-de \
+        libtidy-dev \
+        librecode0 \
+        librecode-dev \
+        libgmp-dev \
+        libc6 \
+        libgmp10 \
+        ucf \
+        re2c \
+        file \
+        libmagickwand-dev \
+        --no-install-recommends \
 	&& ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/ \
 	&& docker-php-ext-install mcrypt opcache \
 	&& yes | pecl install xdebug imagick && docker-php-ext-enable imagick \
