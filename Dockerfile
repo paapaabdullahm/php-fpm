@@ -6,12 +6,14 @@ ENV NPM_CONFIG_LOGLEVEL info
 ENV NODE_VERSION 8.9.4
 
 # Add PHP-FPM and other essential pkgs & libs
-RUN echo "deb http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/ xenial main" >> /etc/apt/sources.list \
+RUN wget http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.54-1ubuntu1_amd64.deb; \
+    dpkg -i libpng12-0_1.2.54-1ubuntu1_amd64.deb; apt install -f; \
+    rm -f libpng12-0_1.2.54-1ubuntu1_amd64.deb \
     && apt update && apt upgrade -y \
 	&& apt install -y apt-utils \
 	&& apt install -y libicu-dev \
 	&& docker-php-ext-install -j$(nproc) intl \
-	&& apt install -y libfreetype6-dev libjpeg62-turbo-dev libpng12-dev \
+	&& apt install -y libfreetype6-dev libjpeg62-turbo-dev \
 	&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
 	&& docker-php-ext-install -j$(nproc) gd \
 	&& apt install -y \
