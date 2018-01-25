@@ -16,7 +16,7 @@ These features include:
 
 ### The following extensions have been enabled in addition to the core extensions
 
-[PHP Modules]
+[PHP Modules]                                                       
     01. bcmath                                        
     02. calendar                                               
     03. Core                               
