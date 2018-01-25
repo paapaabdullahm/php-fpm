@@ -7,9 +7,9 @@ ENV NODE_VERSION 8.9.4
 
 # Add PHP-FPM and other essential pkgs & libs
 RUN echo "deb http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/ xenial main" >> /etc/apt/sources.list;
-    apt update && apt upgrade -y \
-	&& apt install -y apt-utils \
-	&& apt install -y libicu-dev \
+    apt-get update && apt upgrade -y \
+	&& apt-get install -y apt-utils \
+	&& apt-get install -y libicu-dev \
 	&& docker-php-ext-install -j$(nproc) intl \
 	&& apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng12-dev \
 	&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
