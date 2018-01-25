@@ -22,7 +22,7 @@ RUN wget http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.5
     #
 	&& apt install -y \
         libmcrypt-dev \
-        #php-apc \
+        ##php-apc \
         libxml2-dev \
         libldb-dev \
         libldap2-dev \
@@ -57,7 +57,7 @@ RUN wget http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.5
     #
 	&& docker-php-ext-install \
     mcrypt \
-    opcache \
+    #opcache \
     #
 	&& yes | pecl install xdebug imagick && docker-php-ext-enable imagick \
 	&& echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini \
@@ -66,61 +66,61 @@ RUN wget http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.5
     #
     && docker-php-ext-install \
         soap \
-        #ftp \
-        xsl \
+        ##ftp \
+        #xsl \
         bcmath \
-        #calendar \
-        #ctype \
+        ##calendar \
+        ##ctype \
         dba \
         dom \
         zip \
-        #session \
+        ##session \
     #
     && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu \
     #
     && docker-php-ext-install \
         ldap \
-        #json \
-        #hash \
-        #sockets \
+        ##json \
+        ##hash \
+        ##sockets \
         pdo \
         mbstring \
-        #gmp \
-        #tokenizer \
-        pgsql \
-        pdo_pgsql \
-        pdo_mysql \
-        pdo_sqlite \
-        intl mysqli \
+        ##gmp \
+        ##tokenizer \
+        #pgsql \
+        #pdo_pgsql \
+        #pdo_mysql \
+        #pdo_sqlite \
+        #intl mysqli \
     #
     && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     #
     && docker-php-ext-install \
-        imap \
-        gd \
-        curl \
-        #exif \
-        #fileinfo \
-        gettext \
-        #iconv \
+        #imap \
+        #gd \
+        #curl \
+        ##exif \
+        ##fileinfo \
+        #gettext \
+        ##iconv \
         interbase \
         pdo_firebird \
         opcache \
-        #pcntl \
-        #phar \
+        ##pcntl \
+        ##phar \
         posix \
         pspell \
         recode \
-        #shmop \
-        simplexml \
-        #sysvmsg \
-        #sysvsem \
-        #sysvshm \
+        ##shmop \
+        #simplexml \
+        ##sysvmsg \
+        ##sysvsem \
+        ##sysvshm \
         tidy \
         wddx \
-        xml \
-        xmlrpc \
-        xmlwriter \
+        #xml \
+        #xmlrpc \
+        #xmlwriter \
     #
     && yes | pecl install mongodb \
     && echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/ext-mongodb.ini \
