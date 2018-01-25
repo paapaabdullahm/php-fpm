@@ -55,8 +55,8 @@ RUN wget http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.5
         --no-install-recommends \
 	&& ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/ \
     #
-	&& docker-php-ext-install \
-    mcrypt \
+	#&& docker-php-ext-install \
+    #mcrypt \
     #opcache \
     #
 	&& yes | pecl install xdebug imagick && docker-php-ext-enable imagick \
@@ -64,27 +64,27 @@ RUN wget http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.5
     && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini \
     #
-    && docker-php-ext-install \
-        soap \
+    #&& docker-php-ext-install \
+        #soap \
         ##ftp \
         #xsl \
-        bcmath \
+        #bcmath \
         ##calendar \
         ##ctype \
-        dba \
-        dom \
-        zip \
+        #dba \
+        #dom \
+        #zip \
         ##session \
     #
-    && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu \
+    #&& docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu \
     #
-    && docker-php-ext-install \
-        ldap \
+    #&& docker-php-ext-install \
+        #ldap \
         ##json \
         ##hash \
         ##sockets \
-        pdo \
-        mbstring \
+        #pdo \
+        #mbstring \
         ##gmp \
         ##tokenizer \
         #pgsql \
@@ -93,9 +93,9 @@ RUN wget http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.5
         #pdo_sqlite \
         #intl mysqli \
     #
-    && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
+    #&& docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     #
-    && docker-php-ext-install \
+    #&& docker-php-ext-install \
         #imap \
         #gd \
         #curl \
@@ -103,21 +103,21 @@ RUN wget http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.5
         ##fileinfo \
         #gettext \
         ##iconv \
-        interbase \
-        pdo_firebird \
-        opcache \
+        #interbase \
+        #pdo_firebird \
+        #opcache \
         ##pcntl \
         ##phar \
-        posix \
-        pspell \
-        recode \
+        #posix \
+        #pspell \
+        #recode \
         ##shmop \
         #simplexml \
         ##sysvmsg \
         ##sysvsem \
         ##sysvshm \
-        tidy \
-        wddx \
+        #tidy \
+        #wddx \
         #xml \
         #xmlrpc \
         #xmlwriter \
