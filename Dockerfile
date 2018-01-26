@@ -131,7 +131,7 @@ RUN wget http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.5
     && rm -rf /var/lib/apt/lists/*
     
 # Add Node JS
-RUN set -ex \
+RUN set -ex; \
     #&& for key in \
     #    94AE36675C464D64BAFA68DD7434390BDBE9B9C5 \
     #    FD3A5288F042B6850C66B31F09FE44734EB7990E \
@@ -146,11 +146,20 @@ RUN set -ex \
       #gpg --keyserver pgp.mit.edu --recv-keys "$key" || \
       #gpg --keyserver keyserver.pgp.com --recv-keys "$key" ; \
     #done \
-    && gpg --keyserver pool.sks-keyservers.net --recv-keys DD8F2338BAE7501E3DD5AC78C273792F7D83545D \
-    && curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz" \
-    && curl -SLO --compressed "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.sig" \
-    && gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.sig \
-    && grep " node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt | sha256sum -c - \
+    #
+    gpg --keyserver pool.sks-keyservers.net --recv-keys 94AE36675C464D64BAFA68DD7434390BDBE9B9C5; \
+    gpg --keyserver pool.sks-keyservers.net --recv-keys FD3A5288F042B6850C66B31F09FE44734EB7990E; \
+    gpg --keyserver pool.sks-keyservers.net --recv-keys 71DCFD284A79C3B38668286BC97EC7A07EDE3FC1; \
+    gpg --keyserver pool.sks-keyservers.net --recv-keys DD8F2338BAE7501E3DD5AC78C273792F7D83545D; \
+    gpg --keyserver pool.sks-keyservers.net --recv-keys C4F0DFFF4E8C1A8236409D08E73BC641CC11F4C8; \
+    gpg --keyserver pool.sks-keyservers.net --recv-keys B9AE9905FFD7803F25714661B63B535A4C206CA9; \
+    gpg --keyserver pool.sks-keyservers.net --recv-keys 56730D5401028683275BD23C23EFEFE93C4CFFFE; \
+    gpg --keyserver pool.sks-keyservers.net --recv-keys 77984A986EBC2AA786BC0F66B01FBB92821C587A; \
+    #
+    curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz"; \
+    curl -SLO --compressed "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.sig"; \
+    gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.sig; \
+    grep " node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt | sha256sum -c - \
     && tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 --no-same-owner \
     && rm "node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt.sig SHASUMS256.txt \
     && ln -s /usr/local/bin/node /usr/local/bin/nodejs \
