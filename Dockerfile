@@ -131,7 +131,7 @@ RUN groupadd --gid 2000 node \
     && useradd --uid 2000 --gid node --shell /bin/bash --create-home node
 
 # Add Node JS
-RUN set -ex; \
+RUN set -ex \
     && for key in \
         94AE36675C464D64BAFA68DD7434390BDBE9B9C5 \
         FD3A5288F042B6850C66B31F09FE44734EB7990E \
