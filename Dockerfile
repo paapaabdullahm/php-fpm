@@ -15,7 +15,6 @@ RUN apt install -y apt-utils \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libmcrypt-dev \
-    #php-apc \
     libxml2-dev \
     libldb-dev \
     libldap2-dev \
@@ -49,8 +48,8 @@ RUN apt install -y apt-utils \
     docker-php-ext-install -j$(nproc) intl gd ; \
     ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
 
-#RUN docker-php-ext-install \
-    #mcrypt \
+RUN docker-php-ext-install \
+    mcrypt
     #opcache
 	
 #RUN yes | pecl install xdebug imagick && docker-php-ext-enable imagick \
