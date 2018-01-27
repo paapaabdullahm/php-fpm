@@ -82,33 +82,31 @@ RUN yes | pecl install xdebug imagick && docker-php-ext-enable imagick; \
     echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini; \
     echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini
    
-#RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
-    #&& docker-php-ext-install \
-    #imap \
-    #gd \
-    #curl \
-    ##exif \
-    ##fileinfo \
-    #gettext \
-    ##iconv \
-    #interbase \
-    #pdo_firebird \
-    #opcache \
-    ##pcntl \
-    ##phar \
-    #posix \
-    #pspell \
-    #recode \
-    ##shmop \
-    #simplexml \
-    ##sysvmsg \
-    ##sysvsem \
-    ##sysvshm \
-    #tidy \
-    #wddx \
-    #xml \
-    #xmlrpc \
-    #xmlwriter
+RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
+    docker-php-ext-install \
+    imap \
+    ##curl \
+    exif \
+    fileinfo \
+    gettext \
+    iconv \
+    interbase \
+    pdo_firebird \
+    pcntl \
+    phar \
+    posix \
+    pspell \
+    recode \
+    shmop \
+    simplexml \
+    sysvmsg \
+    sysvsem \
+    sysvshm \
+    tidy \
+    wddx \
+    xml \
+    xmlrpc \
+    xmlwriter
 
 RUN yes | pecl install mongodb \
     && echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/ext-mongodb.ini \
