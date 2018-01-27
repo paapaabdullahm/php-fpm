@@ -85,7 +85,7 @@ RUN yes | pecl install xdebug imagick && docker-php-ext-enable imagick; \
 RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
     docker-php-ext-install \
     imap \
-    ##curl \
+    curl \
     exif \
     fileinfo \
     gettext \
