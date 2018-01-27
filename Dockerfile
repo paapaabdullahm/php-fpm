@@ -115,7 +115,7 @@ RUN wget http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.5
     && rm -rf /var/lib/apt/lists/*
 
 RUN groupadd --gid 2000 node \
-    && useradd --uid 2000 --gid node --shell /bin/bash --create-home node
+    && useradd --uid 2000 --gid node --shell /bin/bash --create-home node \
     && curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz" \
     && curl -SLO --compressed "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt" \
     && grep "node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt | sha256sum -c - \
