@@ -6,11 +6,11 @@ ENV NODE_VERSION 8.9.4
 
 # Setup essential pkgs & libs
 RUN wget http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.54-1ubuntu1_amd64.deb; \
-    dpkg -i libpng12-0_1.2.54-1ubuntu1_amd64.deb; apt install -f; \
-    rm -f libpng12-0_1.2.54-1ubuntu1_amd64.deb; \
-    apt update && apt upgrade -y
-
-RUN apt install -y apt-utils \
+    dpkg -i libpng12-0_1.2.54-1ubuntu1_amd64.deb; \
+    apt install -f; \
+    apt update; \
+    apt upgrade -y; \
+    apt install -y apt-utils \
     libicu-dev \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
@@ -42,11 +42,11 @@ RUN apt install -y apt-utils \
     libgmp10 \
     ucf \
     re2c \
-    file \
-    libmagickwand-dev --no-install-recommends ; \
-    docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ ; \
-    docker-php-ext-install -j$(nproc) intl gd ; \
-    ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
+    file; \
+    libmagickwand-dev --no-install-recommends; \
+    docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/; \
+    docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu; \
+    rm -f libpng12-0_1.2.54-1ubuntu1_amd64.deb
     
 RUN docker-php-ext-install \
     opcache \
@@ -59,15 +59,7 @@ RUN docker-php-ext-install \
     dba \
     dom \
     zip \
-    session
-
-RUN yes | pecl install xdebug imagick && docker-php-ext-enable imagick; \
-	echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini; \
-    echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini; \
-    echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini
-    
-RUN docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu; \
-    docker-php-ext-install \
+    session \
     ldap \
     json \
     hash \
@@ -81,8 +73,15 @@ RUN docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu; \
     pdo_mysql \
     pdo_sqlite \
     intl \
-    mysqli
-    
+    mysqli \
+    -j$(nproc) intl gd; \
+    ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
+
+RUN yes | pecl install xdebug imagick && docker-php-ext-enable imagick; \
+	echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini; \
+    echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini; \
+    echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini
+   
 #RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     #&& docker-php-ext-install \
     #imap \
