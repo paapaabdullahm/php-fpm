@@ -10,12 +10,9 @@ RUN wget http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.5
     rm -f libpng12-0_1.2.54-1ubuntu1_amd64.deb \
     && apt update && apt upgrade -y \
 	&& apt install -y apt-utils \
-	&& apt install -y libicu-dev \
-    && docker-php-ext-install -j$(nproc) intl \
-    && apt install -y libfreetype6-dev libjpeg62-turbo-dev \
-	&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-install -j$(nproc) gd \
-	&& apt install -y \
+        libicu-dev \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
         libmcrypt-dev \
         ##php-apc \
         libxml2-dev \
@@ -46,9 +43,10 @@ RUN wget http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.5
         ucf \
         re2c \
         file \
-        libmagickwand-dev \
-        --no-install-recommends \
-	&& ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/ \
+        libmagickwand-dev --no-install-recommends ; \
+        docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ ; \
+        docker-php-ext-install -j$(nproc) intl gd ; \
+        ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/ \
 	#&& docker-php-ext-install \
     #mcrypt \
     #opcache \
