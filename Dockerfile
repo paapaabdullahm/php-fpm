@@ -5,7 +5,7 @@ MAINTAINER Abdullah Morgan <paapaabdullahm@gmail.com>
 ENV NPM_CONFIG_LOGLEVEL info
 ENV NODE_VERSION 8.9.4
 
-# Setup essential pkgs & libs
+# Setup essential pkgs & libs via apt
 RUN apt update && apt upgrade -y; \
     apt install -y \
     apt-utils \
@@ -44,12 +44,12 @@ RUN apt update && apt upgrade -y; \
     ucf \
     --no-install-recommends; \
     #
-    # Install libpng 
+    # Install libpng via dpkg 
     wget http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.54-1ubuntu1_amd64.deb; \
     dpkg -i libpng12-0_1.2.54-1ubuntu1_amd64.deb; apt install -f; \
     rm -f libpng12-0_1.2.54-1ubuntu1_amd64.deb; \
     #
-    # Install php extensions
+    # Install php extensions via docker-php-ext
     docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/; \
     docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
     docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu; \
@@ -105,17 +105,17 @@ RUN apt update && apt upgrade -y; \
     -j$(nproc) intl gd; \
     ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/; \
     #
-    # Install pecl extensions
+    # Install php extensions via pecl
     yes | pecl install imagick xdebug mongodb; \
     docker-php-ext-enable imagick; \
-	echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini; \
+    echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini; \
     echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini; \
     echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini; \
     echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/ext-mongodb.ini; \
     usermod -u 1000 www-data; \
     rm -rf /var/lib/apt/lists/*; \
     #
-    # Install apidoc js
+    # Install apidoc js via npm
     groupadd --gid 2000 node; \
     useradd --uid 2000 --gid node --shell /bin/bash --create-home node; \
     curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz"; \
