@@ -15,7 +15,7 @@ RUN apt install -y apt-utils \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libmcrypt-dev \
-    php-apc \
+    #php-apc \
     libxml2-dev \
     libldb-dev \
     libldap2-dev \
