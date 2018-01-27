@@ -1,6 +1,7 @@
 FROM php:7.2.1-fpm
 
 MAINTAINER Abdullah Morgan <paapaabdullahm@gmail.com>
+
 ENV NPM_CONFIG_LOGLEVEL info
 ENV NODE_VERSION 8.9.4
 
@@ -41,15 +42,15 @@ RUN apt update && apt upgrade -y; \
     mysql-client \
     re2c \
     ucf \
-    --no-install-recommends;
-
-# Install libpng 
-RUN wget http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.54-1ubuntu1_amd64.deb; \
+    --no-install-recommends; \
+    #
+    # Install libpng 
+    wget http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.54-1ubuntu1_amd64.deb; \
     dpkg -i libpng12-0_1.2.54-1ubuntu1_amd64.deb; apt install -f; \
-    rm -f libpng12-0_1.2.54-1ubuntu1_amd64.deb;
-
-# Install php extensions
-RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/; \
+    rm -f libpng12-0_1.2.54-1ubuntu1_amd64.deb; \
+    #
+    # Install php extensions
+    docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/; \
     docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
     docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu; \
     docker-php-ext-install \
@@ -102,20 +103,20 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
     xsl \
     zip \
     -j$(nproc) intl gd; \
-    ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/;
-
-# Install pecl extensions
-RUN yes | pecl install imagick xdebug mongodb; \
+    ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/; \
+    #
+    # Install pecl extensions
+    yes | pecl install imagick xdebug mongodb; \
     docker-php-ext-enable imagick; \
 	echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini; \
     echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini; \
     echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini; \
     echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/ext-mongodb.ini; \
     usermod -u 1000 www-data; \
-    rm -rf /var/lib/apt/lists/*;
-
-# Install apidoc
-RUN groupadd --gid 2000 node; \
+    rm -rf /var/lib/apt/lists/*; \
+    #
+    # Install apidoc js
+    groupadd --gid 2000 node; \
     useradd --uid 2000 --gid node --shell /bin/bash --create-home node; \
     curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz"; \
     curl -SLO --compressed "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt"; \
