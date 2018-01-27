@@ -47,15 +47,9 @@ RUN apt install -y apt-utils \
     docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ ; \
     docker-php-ext-install -j$(nproc) intl gd ; \
     ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
-
-RUN docker-php-ext-install opcache
-	
-RUN yes | pecl install xdebug imagick && docker-php-ext-enable imagick; \
-	echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini; \
-    echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini; \
-    echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini
     
 RUN docker-php-ext-install \
+    opcache \
     soap \
     ftp \
     xsl \
@@ -66,6 +60,11 @@ RUN docker-php-ext-install \
     dom \
     zip \
     session
+
+RUN yes | pecl install xdebug imagick && docker-php-ext-enable imagick; \
+	echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini; \
+    echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini; \
+    echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini
     
 #RUN docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu \
     #&& docker-php-ext-install \
