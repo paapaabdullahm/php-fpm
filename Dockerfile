@@ -68,20 +68,20 @@ RUN yes | pecl install xdebug imagick && docker-php-ext-enable imagick; \
     
 RUN docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu; \
     docker-php-ext-install \
-    ldap
-    #json \
-    #hash \
-    #sockets \
-    #pdo \
-    #mbstring \
-    #gmp \
-    ##tokenizer \
-    #pgsql \
-    #pdo_pgsql \
-    #pdo_mysql \
-    #pdo_sqlite \
-    #intl \
-    #mysqli
+    ldap \
+    json \
+    hash \
+    sockets \
+    pdo \
+    mbstring \
+    gmp \
+    tokenizer \
+    pgsql \
+    pdo_pgsql \
+    pdo_mysql \
+    pdo_sqlite \
+    intl \
+    mysqli
     
 #RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     #&& docker-php-ext-install \
