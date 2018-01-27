@@ -48,14 +48,12 @@ RUN apt install -y apt-utils \
     docker-php-ext-install -j$(nproc) intl gd ; \
     ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
 
-RUN docker-php-ext-install \
-    #mcrypt
-    opcache
+RUN docker-php-ext-install opcache
 	
-#RUN yes | pecl install xdebug imagick && docker-php-ext-enable imagick \
-	#&& echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini \
-    #&& echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    #&& echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini
+RUN yes | pecl install xdebug imagick && docker-php-ext-enable imagick; \
+	echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini; \
+    echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini; \
+    echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini
     
 #RUN docker-php-ext-install \
     #soap \
