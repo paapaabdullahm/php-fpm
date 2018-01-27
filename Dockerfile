@@ -66,15 +66,15 @@ RUN yes | pecl install xdebug imagick && docker-php-ext-enable imagick; \
     echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini; \
     echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini
     
-#RUN docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu \
-    #&& docker-php-ext-install \
-    #ldap \
-    ##json \
-    ##hash \
-    ##sockets \
+RUN docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu; \
+    docker-php-ext-install \
+    ldap
+    #json \
+    #hash \
+    #sockets \
     #pdo \
     #mbstring \
-    ##gmp \
+    #gmp \
     ##tokenizer \
     #pgsql \
     #pdo_pgsql \
