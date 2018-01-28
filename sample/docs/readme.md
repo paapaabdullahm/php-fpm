@@ -1,1 +1,1 @@
-## api documentations
+## sample api along side sample apidoc js documentations
