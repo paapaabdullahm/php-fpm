@@ -2,19 +2,17 @@
 
 PHP-FPM (FastCGI Process Manager) is an alternative PHP FastCGI implementation with some additional features useful for sites of any size, especially busier sites.
 
-These features include:
+# Usage
 
-- Adaptive process spawning (NEW!)
-- Basic statistics (ala Apache's mod_status) (NEW!)
-- Advanced process management with graceful stop/start
-- Ability to start workers with different uid/gid/chroot/environment and different php.ini (replaces safe_mode)
-- Stdout & stderr logging
-- Emergency restart in case of accidental opcode cache destruction
-- Accelerated upload support
-- Support for a "slowlog"
-- Enhancements to FastCGI, such as fastcgi_finish_request() - a special function to finish request & flush all data while continuing to do something time-consuming (video converting, stats processing, etc.)
+## With docker run
 
-### Extensions enabled in addition to core
+<tr>
+    <td>`$`</td>
+    <td>`docker run -it --rm --name my-app -v "$PWD":/usr/src/my-app -w /usr/src/my-app pam79/php-fpm:7.2.1 php`</td>
+</tr>
+ 
+
+# Extensions enabled in addition to core
 
 [PHP Modules]                                                       
 1. bcmath                                        
