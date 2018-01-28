@@ -137,7 +137,7 @@ server {
 ```  
                                                                       
 
-> Notice we've substituted the link alias name `my-app` for both `server_name` and `fastcgi_pass` directives. You will have to use the same name inside the compose file you created above.
+> Notice we've substituted the service name `my-app` for both `server_name` and `fastcgi_pass` directives. Make sure you are using the same name inside the compose file you created above.
                                                                             
 
 #### Step 8: Open your /etc/hosts file and append `my-app.dev` to it as follows
