@@ -1,1 +1,0 @@
-Sample app along side sample apidoc js documentations.
