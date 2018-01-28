@@ -37,4 +37,3 @@ networks:
   default:
     external:
       name: proxy-tier
-
