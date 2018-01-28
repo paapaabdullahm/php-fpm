@@ -15,18 +15,22 @@ $ docker run -it --rm \
                                              
 #### To speed up things, let's create an alias:                             
                                                                           
--- First open your '.bashrc' file. If you are using zsh open '.zshrc' file instead.                          
-`$ vim ~/.bashrc`                                             
+First open your '.bashrc' file. If you are using zsh open '.zshrc' file instead.                          
+```shell
+$ vim ~/.bashrc
+```                                             
                                                                     
--- Add the following at the bottom of the file and save it.                    
+Add the following at the bottom of the file and save it.                    
 ```shell
 alias php-fpm="docker run -it --rm -v "$PWD":/usr/src/my-app -w /usr/src/my-app pam79/php-fpm:7.2.1 php-fpm"
 ```
                                     
--- Source the file to reload changes                                                              
-`$ . ~/.bashrc`
+Source the file to reload changes                                                              
+```shell 
+$ . ~/.bashrc
+```
                                                     
--- Finally use the alias as regular php-fpm binary:                       
+Finally use the alias as regular php-fpm binary:                       
 ```shell
 $ php-fpm -v
 $ php-fpm -h 
@@ -35,6 +39,7 @@ $ php-fpm -a
 $ php-fpm script.php
 ```
                                                        
+
 ## With docker-compose
                                            
 ```yml 
@@ -51,6 +56,7 @@ services:
     tty: true
 ```
                                         
+
 ## With docker-compose and nginx proxy                          
                                                        
 #### Step 1: cd into your app's directory                                                 
@@ -128,10 +134,11 @@ server {
 > Notice we've substituted the link alias name `my-app` for both `server_name` and `fastcgi_pass` directives. You will have to use the same name inside the compose file you created above.
                                                                             
 #### Step 8: Open your /etc/hosts file and append `my-app.dev` to it as follows
-`<docker-host-ip>   my-app.dev`
+    <docker-host-ip>   my-app.dev
                                                                  
 > visit `http://my-app.dev` in your web browser to preview your app.
                                                                     
+
 # Extensions enabled in addition to core                                       
 
 [PHP Modules]                                                       
