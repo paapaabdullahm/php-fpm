@@ -1,3 +1,8 @@
+<style type='text/css'>
+    a { text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    table, tr, td { border: 0px; }
+</style>
 # Dockerized PHP-FPM
 
 PHP-FPM (FastCGI Process Manager) is an alternative PHP FastCGI implementation with some additional features useful for sites of any size, especially busier sites.
