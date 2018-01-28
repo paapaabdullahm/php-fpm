@@ -113,7 +113,7 @@ networks:
 `$ touch default.conf`
                                                    
 #### Step 7: Add the following content to it                       
-```json  
+```yml 
 server {
     listen 0.0.0.0:80;
     server_name my-app.dev;
