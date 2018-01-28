@@ -6,8 +6,8 @@ PHP-FPM (FastCGI Process Manager) is an alternative PHP FastCGI implementation w
 
 ## With docker run
 <ul style="list-style: none;">
-    <ul>$</ul>
-    <ul>docker run -it --rm --name my-app -v "$PWD":/usr/src/my-app -w /usr/src/my-app pam79/php-fpm:7.2.1 php</ul>
+    <li>$</li>
+    <li>docker run -it --rm --name my-app -v "$PWD":/usr/src/my-app -w /usr/src/my-app pam79/php-fpm:7.2.1 php</li>
 </ul>
 
 # Extensions enabled in addition to core
