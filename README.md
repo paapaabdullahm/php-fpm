@@ -52,6 +52,7 @@ services:
   my-app:
     image: pam79/php-fpm:7.2.1
     container_name: my-app
+    working_dir: /app
     ports:
       - 9000:9000
     volumes:
