@@ -1,4 +1,4 @@
-# Dockerized Laravel PHP-FPM
+# Dockerized PHP-FPM
 
 PHP-FPM (FastCGI Process Manager) is an alternative PHP FastCGI implementation with some additional features useful for sites of any size, especially busier sites.
 
@@ -6,11 +6,12 @@ PHP-FPM (FastCGI Process Manager) is an alternative PHP FastCGI implementation w
 
 ## With docker run
 
+<table>
 <tr>
     <td>`$`</td>
     <td>`docker run -it --rm --name my-app -v "$PWD":/usr/src/my-app -w /usr/src/my-app pam79/php-fpm:7.2.1 php`</td>
 </tr>
- 
+</table> 
 
 # Extensions enabled in addition to core
 
