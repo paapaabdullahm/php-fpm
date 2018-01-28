@@ -114,3 +114,6 @@ RUN apt update && apt upgrade -y; \
     echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/ext-mongodb.ini; \
     usermod -u 1000 www-data; \
     rm -rf /var/lib/apt/lists/*;
+
+EXPOSE 9000
+CMD ["php-fpm"]
