@@ -1,0 +1,40 @@
+version: '2.1'
+
+services:
+
+  api:
+    image: pam79/php-fpm:7.2.1
+    container_name: api
+    working_dir: /usr/share/nginx/html
+    volumes:
+      - ./:/usr/share/nginx/html:z
+
+  nginx:
+    image: pam79/nginx:1.11.0
+    container_name: nginx
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    volumes_from:
+      - api
+      - apidoc
+    environment:
+      - "VIRTUAL_HOST=php-fpm.dev"
+    tty: true
+    stdin_open: true
+    networks: 
+      - default
+
+  apidoc:
+    image: pam79/apidoc:0.17.1
+    container_name: apidoc
+    volumes_from:
+      - api
+    environment:
+      SRC_INPUT: ./
+      DOC_OUTPUT: docs/
+
+networks:
+  default:
+    external:
+      name: proxy-tier
+
