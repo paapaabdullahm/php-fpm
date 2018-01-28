@@ -44,7 +44,6 @@ $ php-fpm script.php
 ```
                                                        
 
-
 ## With docker-compose
 ```yml 
 version: '2'
