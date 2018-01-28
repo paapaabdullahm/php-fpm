@@ -113,7 +113,7 @@ networks:
 `$ touch default.conf`
                                                    
 #### Step 7: Add the following content to it                       
-```conf 
+```json  
 server {
     listen 0.0.0.0:80;
     server_name my-app.dev;
@@ -136,7 +136,7 @@ server {
 }
 ```  
                                                                       
-                                                                      
+
 > Notice we've substituted the link alias name `my-app` for both `server_name` and `fastcgi_pass` directives. You will have to use the same name inside the compose file you created above.
                                                                             
 
