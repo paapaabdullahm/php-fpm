@@ -113,15 +113,4 @@ RUN apt update && apt upgrade -y; \
     echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini; \
     echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/ext-mongodb.ini; \
     usermod -u 1000 www-data; \
-    rm -rf /var/lib/apt/lists/*; \
-    #
-    # Install apidoc js via npm
-    groupadd --gid 2000 node; \
-    useradd --uid 2000 --gid node --shell /bin/bash --create-home node; \
-    curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz"; \
-    curl -SLO --compressed "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt"; \
-    grep "node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt | sha256sum -c -; \
-    tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 --no-same-owner; \
-    rm "node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt; \
-    ln -s /usr/local/bin/node /usr/local/bin/nodejs; \
-    npm install apidoc -g;
+    rm -rf /var/lib/apt/lists/*;
