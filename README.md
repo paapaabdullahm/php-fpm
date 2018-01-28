@@ -137,7 +137,7 @@ server {
 ```  
                                                                       
 
-> Notice we've substituted the service name `my-app` for the `fastcgi_pass` directives above. Make sure you are using the same name inside the compose file you created previously.
+> Notice we've substituted the service name `my-app` for the `fastcgi_pass` directive above. Make sure you are using the same name inside the compose file you created previously.
                                                                             
 
 #### Step 8: Open your /etc/hosts file and append `my-app.dev` to it as follows
