@@ -43,7 +43,8 @@ For example:
     `$ php artisan foo bar `                                     
                                                                        
 - to check the php version you you are running, you can either do:             
-    `$ php-fpm -v` or `$ php -v`                                      
+    `$ php-fpm -v` or                                    
+    `$ php -v`                                      
                                                       
 - to step into an interactive REPL mode you can do:                          
     `$ php -a`                              
