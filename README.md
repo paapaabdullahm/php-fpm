@@ -1,21 +1,23 @@
 # Dockerized PHP-FPM                                                      
                                                            
-PHP-FPM (FastCGI Process Manager) is an alternative PHP FastCGI implementation with some additional features useful for sites of any size, especially busier sites.
+PHP-FPM (FastCGI Process Manager) is an alternative PHP FastCGI implementation with some additional features useful for sites of any size, especially busier sites. It also comes bundled with two binaries namely:                           
+- php-fpm which is the fast cgi processor, and 
+- php which is the command line interface tool
 
-### Docker Pull Command                                              
+#### Docker Pull Command                                              
     docker pull pam79/php-fpm
                                              
 # Usage                                                                    
                                                    
-## With docker run                                                      
+### With docker run                                                      
 ```shell
-$ docker run -it --rm --name my-app -v "$PWD":/usr/src/my-app -w /usr/src/my-app pam79/php-fpm:7.2.1
+$ docker run -it --rm --name my-app -v "$PWD":/usr/src/my-app -w /usr/src/my-app pam79/php-fpm
 ```
                                              
 
-### To speed up things, let's create an alias:                             
+#### To speed up things, let's create an two aliases. One for php-fpm and the other for php cli:                             
                                                                           
-First open your '.bashrc' file. If you are using zsh open '.zshrc' file instead.                          
+First open your '.bashrc' file. If you are using zsh open your '.zshrc' file instead.                          
 ```shell
 $ vim ~/.bashrc
 ```                                             
@@ -23,7 +25,8 @@ $ vim ~/.bashrc
 
 Add the following at the bottom of the file and save it.                    
 ```shell
-alias php-fpm="docker run -it --rm -v "$PWD":/usr/src/my-app -w /usr/src/my-app pam79/php-fpm:7.2.1 php-fpm"
+alias php-fpm="docker run -it --rm -v "$PWD":/usr/src/my-app -w /usr/src/my-app pam79/php-fpm php-fpm"
+alias php="docker run -it --rm -v "$PWD":/usr/src/my-app -w /usr/src/my-app pam79/php-fpm php"
 ```
                                     
 
@@ -33,23 +36,32 @@ $ . ~/.bashrc
 ```
                                                     
 
-Finally use the alias as regular php-fpm binary:                       
-```shell
-$ php-fpm -v
-$ php-fpm -h 
-$ php-fpm -i 
-$ php-fpm -a 
-$ php-fpm script.php
-```
-                                                       
+Finally use the alias as regular php-fpm, and php binaries.                  
 
-## With docker-compose
+For example:                                    
+- if you are using it with Laravel you can easily do:                                          
+    `$ php artisan foo bar `                                     
+                                                                       
+- to check the php version you can either do:
+    `$ php-fpm -v` or `$ php -v`                                      
+                                                      
+- to step into an interactive REPL mode you can do:                          
+    `$ php -a`
+
+- to run a script with the cli tool you can simply do:                         
+    `$ php script.php`                                   
+                                                         
+- to find out which php modules are enabled you can do:                        
+    `$ php-fpm -i` or `$php -i`                            
+                                                           
+                                                                          
+### With docker-compose
 ```yml 
 version: '2'
 
 services:
   my-app:
-    image: pam79/php-fpm:7.2.1
+    image: pam79/php-fpm
     container_name: my-app
     working_dir: /app
     ports:
@@ -60,32 +72,32 @@ services:
 ```
                                         
 
-## With docker-compose and nginx proxy                          
+### With docker-compose and nginx proxy                          
                                                        
-### Step 1: cd into your app's directory                                                 
+#### Step 1: cd into your app's directory                                                 
 `$ cd my-app`
                                                                   
-### Step 2: Create a network                                              
+#### Step 2: Create a network                                              
 `$ docker network create proxy-tier`                                       
                                                     
-### Step 3: Create your docker-compose file                                
+#### Step 3: Create your docker-compose file                                
 `$ touch docker-compose`
                                                                  
-### Step 4: Open file and save the following content to it                
+#### Step 4: Open file and save the following content to it                
 ```yml 
 version: '2.1'
 
 services:
 
   my-app:
-    image: pam79/php-fpm:7.2.1
+    image: pam79/php-fpm
     container_name: my-app
     working_dir: /usr/share/nginx/html
     volumes:
       - ./:/usr/share/nginx/html:z
 
   nginx-proxy:
-    image: pam79/nginx:1.12.2
+    image: pam79/nginx
     container_name: nginx
     volumes:
       - ./default.conf:/etc/nginx/conf.d/default.conf
@@ -108,10 +120,10 @@ networks:
 ``` 
                                                   
 
-### Step 5: Create a default.conf file for nginx                          
+#### Step 5: Create a default.conf file for nginx                          
 `$ touch default.conf`
                                                    
-### Step 7: Add the following content to it                       
+#### Step 7: Add the following content to it                       
 ```nginx 
 server {
     listen 0.0.0.0:80;
@@ -139,7 +151,7 @@ server {
 > Notice we've substituted the service name `my-app` for the `fastcgi_pass` directive above. Make sure you are using the same name inside the compose file you created previously.
                                                                             
 
-### Step 8: Open your /etc/hosts file and append `my-app.dev` to it as follows
+#### Step 8: Open your /etc/hosts file and append `my-app.dev` to it as follows
     <docker-host-ip>   my-app.dev
                                                                  
 > visit `http://my-app.dev` in your web browser to preview your app.
