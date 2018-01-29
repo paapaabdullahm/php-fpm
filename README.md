@@ -57,20 +57,20 @@ For example:
                                                            
                                                                           
 ### With docker-compose
-    ```yml 
-    version: '2.1'
+```yml 
+version: '2.1'
 
-    services:
-      my-app:
-        image: pam79/php-fpm
-        container_name: my-app
-        working_dir: /app
-        ports:
-          - 9000:9000
-        volumes:
-          - .:/app 
-        tty: true
-    ```
+services:
+  my-app:
+    image: pam79/php-fpm
+    container_name: my-app
+    working_dir: /app
+    ports:
+      - 9000:9000
+    volumes:
+      - .:/app 
+    tty: true
+```
                                         
 
 ### With docker-compose and nginx proxy                          
