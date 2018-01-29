@@ -125,6 +125,7 @@ networks:
     `$ touch default.conf`
                                                    
 - Step 7: Add the following content to it                       
+    
 ```nginx 
 server {
     listen 0.0.0.0:80;
