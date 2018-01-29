@@ -127,26 +127,26 @@ networks:
 - Step 7: Add the following content to it                       
     
 ```nginx 
-server {
-    listen 0.0.0.0:80;
-    server_name my-app.dev;
+    server {
+        listen 0.0.0.0:80;
+        server_name my-app.dev;
 
-    index index.php index.html;
-    root /usr/share/nginx/html;
+        index index.php index.html;
+        root /usr/share/nginx/html;
 
-    location / {
-        try_files $uri $uri/ /index.php?$args;
+        location / {
+            try_files $uri $uri/ /index.php?$args;
+        }
+
+        location ~ \.php$ {
+            fastcgi_split_path_info ^(.+\.php)(/.+)$;
+            fastcgi_pass my-app:9000;
+            fastcgi_index index.php;
+            include fastcgi_params;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            fastcgi_param PATH_INFO $fastcgi_path_info;
+        }
     }
-
-    location ~ \.php$ {
-        fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_pass my-app:9000;
-        fastcgi_index index.php;
-        include fastcgi_params;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        fastcgi_param PATH_INFO $fastcgi_path_info;
-    }
-}
 ```  
                                                                       
 
