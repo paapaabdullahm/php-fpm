@@ -157,7 +157,7 @@ services:
 - Step 8: Open your /etc/hosts file and append `my-app.dev` to it as follows    
     `<ip-address>   my-app.dev`                             
                                                                  
-    Finally, visit `http://my-app.dev` in your web browser to preview your app.
+- Finally, visit `http://my-app.dev` in your web browser to preview your app.
                                                                     
                                                                      
 # Extensions enabled in addition to core                                       
