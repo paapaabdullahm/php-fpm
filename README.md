@@ -75,16 +75,16 @@ services:
 
 ### With docker-compose and nginx proxy                          
                                                        
-- Step 1: cd into your app's directory                                                 
-    `$ cd my-app`
-                                                                  
-- Step 2: Create a network                                              
+- Step 1: Create a network                                              
     `$ docker network create proxy-tier`                                       
                                                     
+- Step 2: cd into your app's directory                                                 
+    `$ cd my-app`
+                                                                  
 - Step 3: Create your docker-compose file                                
     `$ touch docker-compose`
                                                                  
-- Step 4: Open file and save the following content to it                
+- Step 4: Open file and add the following content to it                
     
     ```yml 
     version: '2.1'
