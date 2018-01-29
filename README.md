@@ -126,7 +126,7 @@ networks:
                                                    
 - Step 7: Add the following content to it                       
     
-```nginx 
+    ```nginx 
     server {
         listen 0.0.0.0:80;
         server_name my-app.dev;
@@ -147,7 +147,7 @@ networks:
             fastcgi_param PATH_INFO $fastcgi_path_info;
         }
     }
-```  
+    ```  
                                                                       
 
 > Notice we've substituted the service name `my-app` for the `fastcgi_pass` directive above. Make sure you are using the same name inside the compose file you created previously.
