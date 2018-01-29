@@ -57,20 +57,20 @@ For example:
                                                            
                                                                           
 ### With docker-compose
-```yml 
-version: '2.1'
+    ```yml 
+    version: '2.1'
 
-services:
-  my-app:
-    image: pam79/php-fpm
-    container_name: my-app
-    working_dir: /app
-    ports:
-      - 9000:9000
-    volumes:
-      - .:/app 
-    tty: true
-```
+    services:
+      my-app:
+        image: pam79/php-fpm
+        container_name: my-app
+        working_dir: /app
+        ports:
+          - 9000:9000
+        volumes:
+          - .:/app 
+        tty: true
+    ```
                                         
 
 ### With docker-compose and nginx proxy                          
@@ -85,40 +85,41 @@ services:
     `$ touch docker-compose`
                                                                  
 - Step 4: Open file and save the following content to it                
-```yml 
-version: '2.1'
+    
+    ```yml 
+    version: '2.1'
 
-services:
+    services:
 
-  my-app:
-    image: pam79/php-fpm
-    container_name: my-app
-    working_dir: /usr/share/nginx/html
-    volumes:
-      - ./:/usr/share/nginx/html:z
+      my-app:
+        image: pam79/php-fpm
+        container_name: my-app
+        working_dir: /usr/share/nginx/html
+        volumes:
+          - ./:/usr/share/nginx/html:z
 
-  nginx-proxy:
-    image: pam79/nginx
-    container_name: nginx
-    volumes:
-      - ./default.conf:/etc/nginx/conf.d/default.conf
-    volumes_from:
-      - my-app
-    environment:
-      - "VIRTUAL_HOST=my-app.dev"
-    tty: true
-    stdin_open: true
-    networks: 
-      - default
-    ports:
-      - '80:80'
-      - '443:443'
+      nginx-proxy:
+        image: pam79/nginx
+        container_name: nginx
+        volumes:
+          - ./default.conf:/etc/nginx/conf.d/default.conf
+        volumes_from:
+          - my-app
+        environment:
+          - "VIRTUAL_HOST=my-app.dev"
+        tty: true
+        stdin_open: true
+        networks: 
+          - default
+        ports:
+          - '80:80'
+          - '443:443'
 
-networks:
-  default:
-    external:
-      name: proxy-tier
-``` 
+    networks:
+      default:
+        external:
+          name: proxy-tier
+    ``` 
                                                   
 
 - Step 5: Create a default.conf file for nginx                          
@@ -150,7 +151,7 @@ networks:
     ```  
                                                                       
 
-> Notice we've substituted the service name `my-app` for the `fastcgi_pass` directive above. Make sure you are using the same name inside the compose file you created previously.
+    > Notice we've substituted the service name `my-app` for the `fastcgi_pass` directive above. Make sure you are using the same name inside the compose file you created previously.
                                                                             
 
 - Step 8: Open your /etc/hosts file and append `my-app.dev` to it as follows    
