@@ -104,13 +104,7 @@ RUN apt update && apt upgrade -y; \
     #
     # Setup php extensions via pecl
     yes | pecl install imagick xdebug mongodb; \
-    docker-php-ext-enable imagick; \
-    docker-php-ext-enable xdebug; \
-    docker-php-ext-enable mongodb; \
-    #echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini; \
-    #echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini; \
-    #echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini; \
-    #echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/ext-mongodb.ini; \
+    docker-php-ext-enable imagick xdebug mongodb; \
     usermod -u 1000 www-data; \
     rm -rf /var/lib/apt/lists/*;
 
