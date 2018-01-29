@@ -17,7 +17,7 @@ $ docker run -it --rm \
 ```
                                              
 
-#### To speed up things, let's create an alias:                             
+### To speed up things, let's create an alias:                             
                                                                           
 First open your '.bashrc' file. If you are using zsh open '.zshrc' file instead.                          
 ```shell
@@ -66,16 +66,16 @@ services:
 
 ## With docker-compose and nginx proxy                          
                                                        
-#### Step 1: cd into your app's directory                                                 
+### Step 1: cd into your app's directory                                                 
 `$ cd my-app`
                                                                   
-#### Step 2: Create a network                                              
+### Step 2: Create a network                                              
 `$ docker network create proxy-tier`                                       
                                                     
-#### Step 3: Create your docker-compose file                                
+### Step 3: Create your docker-compose file                                
 `$ touch docker-compose`
                                                                  
-#### Step 4: Open file and save the following content to it                
+### Step 4: Open file and save the following content to it                
 ```yml 
 version: '2.1'
 
@@ -112,10 +112,10 @@ networks:
 ``` 
                                                   
 
-#### Step 5: Create a default.conf file for nginx                          
+### Step 5: Create a default.conf file for nginx                          
 `$ touch default.conf`
                                                    
-#### Step 7: Add the following content to it                       
+### Step 7: Add the following content to it                       
 ```nginx 
 server {
     listen 0.0.0.0:80;
@@ -143,7 +143,7 @@ server {
 > Notice we've substituted the service name `my-app` for the `fastcgi_pass` directive above. Make sure you are using the same name inside the compose file you created previously.
                                                                             
 
-#### Step 8: Open your /etc/hosts file and append `my-app.dev` to it as follows
+### Step 8: Open your /etc/hosts file and append `my-app.dev` to it as follows
     <docker-host-ip>   my-app.dev
                                                                  
 > visit `http://my-app.dev` in your web browser to preview your app.
