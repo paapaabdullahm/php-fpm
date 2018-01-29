@@ -42,7 +42,7 @@ For example:
 - if you are using it with Laravel, within your project root, you can easily do:          
     `$ php artisan foo bar `                                     
                                                                        
-- to check the php version you you are running, you can either do:             
+- to check the php version you are running, you can either do:             
     `$ php-fpm -v` or                                    
     `$ php -v`                                      
                                                       
