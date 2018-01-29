@@ -123,7 +123,7 @@ services:
                                                   
 
 - Step 5: Create a default.conf file for nginx                          
-    $ `touch default.conf`
+    `$ touch default.conf`
                                                    
 - Step 7: Add the following content to it                       
     
