@@ -15,7 +15,7 @@ $ docker run -it --rm --name my-app -v "$PWD":/usr/src/my-app -w /usr/src/my-app
 ```
                                              
 
-#### To speed up things, let's create an two aliases. One for php-fpm and the other for php cli:                             
+#### To speed up things, let's create two aliases. One for php-fpm and the other for php cli:                             
                                                                           
 First open your '.bashrc' file. If you are using zsh open your '.zshrc' file instead.                          
 ```shell
@@ -39,25 +39,26 @@ $ . ~/.bashrc
 Finally use the alias as regular php-fpm, and php binaries.                  
 
 For example:                                    
-- if you are using it with Laravel you can easily do:                                          
+- if you are using it with Laravel, within your project root, you can easily do:          
     `$ php artisan foo bar `                                     
                                                                        
-- to check the php version you can either do:
+- to check the php version you you are running, you can either do:             
     `$ php-fpm -v` or `$ php -v`                                      
                                                       
 - to step into an interactive REPL mode you can do:                          
-    `$ php -a`
-
+    `$ php -a`                              
+                                                               
 - to run a script with the cli tool you can simply do:                         
     `$ php script.php`                                   
                                                          
 - to find out which php modules are enabled you can do:                        
-    `$ php-fpm -i` or `$php -i`                            
+    `$ php-fpm -i` or                                       
+    `$ php -i`                            
                                                            
                                                                           
 ### With docker-compose
 ```yml 
-version: '2'
+version: '2.1'
 
 services:
   my-app:
@@ -74,16 +75,16 @@ services:
 
 ### With docker-compose and nginx proxy                          
                                                        
-#### Step 1: cd into your app's directory                                                 
-`$ cd my-app`
+- Step 1: cd into your app's directory                                                 
+    `$ cd my-app`
                                                                   
-#### Step 2: Create a network                                              
-`$ docker network create proxy-tier`                                       
+- Step 2: Create a network                                              
+    `$ docker network create proxy-tier`                                       
                                                     
-#### Step 3: Create your docker-compose file                                
-`$ touch docker-compose`
+- Step 3: Create your docker-compose file                                
+    `$ touch docker-compose`
                                                                  
-#### Step 4: Open file and save the following content to it                
+- Step 4: Open file and save the following content to it                
 ```yml 
 version: '2.1'
 
@@ -120,10 +121,10 @@ networks:
 ``` 
                                                   
 
-#### Step 5: Create a default.conf file for nginx                          
-`$ touch default.conf`
+- Step 5: Create a default.conf file for nginx                          
+    `$ touch default.conf`
                                                    
-#### Step 7: Add the following content to it                       
+- Step 7: Add the following content to it                       
 ```nginx 
 server {
     listen 0.0.0.0:80;
@@ -151,10 +152,10 @@ server {
 > Notice we've substituted the service name `my-app` for the `fastcgi_pass` directive above. Make sure you are using the same name inside the compose file you created previously.
                                                                             
 
-#### Step 8: Open your /etc/hosts file and append `my-app.dev` to it as follows
-    <docker-host-ip>   my-app.dev
+- Step 8: Open your /etc/hosts file and append `my-app.dev` to it as follows    
+    `<ip-address>   my-app.dev`                             
                                                                  
-> visit `http://my-app.dev` in your web browser to preview your app.
+    and visit `http://my-app.dev` in your web browser to preview your app.
                                                                     
                                                                      
 # Extensions enabled in addition to core                                       
