@@ -33,9 +33,8 @@ $ . ~/.bashrc
 ```
                                                                           
 &nbsp;                                                                         
-Finally use the alias as regular php-fpm, and php binaries.                  
-
-Some examples:                                    
+Finally use the alias as regular php-fpm, and php binaries. Here are some examples:             
+                                                                                
 - if you are using it with Laravel, within your project root, you can easily do:          
     `$ php artisan foo bar `                                     
                                                                        
