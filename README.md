@@ -121,7 +121,7 @@ services:
 - Step 5: Create a default.conf file for nginx                          
     `$ touch default.conf`
                                                    
-- Step 7: Add the following content to it                       
+- Step 6: Add the following content to it                       
 
     ```nginx 
     server {
@@ -147,7 +147,7 @@ services:
     ```
     Notice we've substituted the service name `my-app` for the `fastcgi_pass` directive above. Make sure you are using the same name inside the compose file you created previously.
 
-- Step 8: Open your /etc/hosts file and append `my-app.dev` to it as follows    
+- Step 7: Open your /etc/hosts file and append `my-app.dev` to it as follows    
     `<ip-address>   my-app.dev`                             
                                                                  
 - Finally, visit `http://my-app.dev` in your web browser to preview your app.
