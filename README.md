@@ -52,6 +52,7 @@ Finally use the alias as regular php-fpm, and php binaries. Here are some exampl
                                                                                
 - to run your app with the php internal server, you can do the following, with the -t flag specifying the path to your app:                       
     `$ php -t . -S <container-ip>:<port>`                                      
+                                                                             
                                                                                
 ### With docker-compose
 ```yml 
