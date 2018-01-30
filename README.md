@@ -15,7 +15,7 @@ $ docker run -it --rm --name my-app -v "$PWD":/usr/src/my-app -w /usr/src/my-app
 &nbsp; 
 **To speed up things, let's create two aliases:**
 
-First open your **.bashrc** file. If you are using zsh open your **.zshrc** file instead.        
+First open your `.bashrc` file. If you are using zsh open your `.zshrc` file instead.        
 ```shell
 $ vim ~/.bashrc
 ```
