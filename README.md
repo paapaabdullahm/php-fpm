@@ -19,18 +19,18 @@ First open your `.bashrc` file. If you are using zsh open your `.zshrc` file ins
 ```shell
 $ vim ~/.bashrc
 ```
-&nbsp; 
+&nbsp;                                                                         
 Add the following at the bottom of the file. The first alias is for php-fpm while the second is for php cli.                    
 ```shell
 alias php-fpm="docker run -it --rm -v "$PWD":/usr/src/my-app -w /usr/src/my-app pam79/php-fpm php-fpm"
 alias php="docker run -it --rm -v "$PWD":/usr/src/my-app -w /usr/src/my-app pam79/php-fpm php"
 ```
-&nbsp; 
+&nbsp;                                                                         
 Source the file to reload changes                                                              
 ```shell 
 $ . ~/.bashrc
 ```
-&nbsp; 
+&nbsp;                                                                         
 Finally use the alias as regular php-fpm, and php binaries. Here are some examples:             
                                                                                 
 - if you are using it with Laravel, within your project root, you can easily do:          
@@ -68,7 +68,7 @@ services:
       - .:/app 
     tty: true
 ```
-&nbsp; 
+&nbsp;                                                                        
 ### With docker-compose and nginx as proxy                          
                                                        
 - Step 1: Create a network                                              
@@ -116,7 +116,7 @@ services:
         external:
           name: proxy-tier
     ``` 
-&nbsp; 
+&nbsp;                                                                         
 - Step 5: Create a default.conf file for nginx                          
     `$ touch default.conf`
                                                    
