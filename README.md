@@ -11,27 +11,27 @@ PHP-FPM (FastCGI Process Manager) is an alternative PHP FastCGI implementation w
 ```shell
 $ docker run -it --rm --name my-app -v "$PWD":/usr/src/my-app -w /usr/src/my-app pam79/php-fpm
 ```
-                                                                               
+
 &nbsp;                                                                         
 #### To speed up things, let's create two aliases:                             
 First open your **.bashrc** file. If you are using zsh open your **.zshrc** file instead.        
 ```shell
 $ vim ~/.bashrc
 ```                                             
-                                                                               
+
 &nbsp;                                                                         
 Add the following at the bottom of the file. The first alias is for php-fpm while the second is for php cli.                    
 ```shell
 alias php-fpm="docker run -it --rm -v "$PWD":/usr/src/my-app -w /usr/src/my-app pam79/php-fpm php-fpm"
 alias php="docker run -it --rm -v "$PWD":/usr/src/my-app -w /usr/src/my-app pam79/php-fpm php"
 ```
-                                                                               
+
 &nbsp;                                                                         
 Source the file to reload changes                                                              
 ```shell 
 $ . ~/.bashrc
 ```
-                                                                          
+
 &nbsp;                                                                         
 Finally use the alias as regular php-fpm, and php binaries. Here are some examples:             
                                                                                 
@@ -70,7 +70,7 @@ services:
       - .:/app 
     tty: true
 ```
-                                        
+
 &nbsp;                                                                         
 ### With docker-compose and nginx proxy                          
                                                        
@@ -119,7 +119,7 @@ services:
         external:
           name: proxy-tier
     ``` 
-                                                                                                                          
+
 &nbsp;                                                                         
 - Step 5: Create a default.conf file for nginx                          
     `$ touch default.conf`
@@ -149,8 +149,7 @@ services:
     }
     ```  
 
-&nbsp;                                           
-> Notice we've substituted the service name `my-app` for the `fastcgi_pass` directive above. Make sure you are using the same name inside the compose file you created previously.
+>   Notice we've substituted the service name `my-app` for the `fastcgi_pass` directive above. Make sure you are using the same name inside the compose file you created previously.
                                                                             
 
 - Step 8: Open your /etc/hosts file and append `my-app.dev` to it as follows    
