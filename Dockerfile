@@ -6,7 +6,6 @@ MAINTAINER Abdullah Morgan <paapaabdullahm@gmail.com>
 RUN apt update && apt upgrade -y; \
     apt install -y \
     apt-utils \
-    aspell-de \
     aspell-en \
     curl \
     file \
