@@ -119,10 +119,10 @@ services:
     ``` 
     Notice in `volumes` under the service `nginx-proxy`, we've mapped a `default.conf` file from our app into the container which we need to create. 
 
-- Step 5: Create a default.conf file for nginx-proxy                    
+- Step 5: Create an nginx default.conf file for your app                    
     `$ touch default.conf`
                                                    
-- Step 6: Add the following content to it                       
+- Step 6: Open it and add the following content to it                       
 
     ```nginx 
     server {
@@ -157,7 +157,7 @@ services:
 - Step 8: Run your app at the forground or background                          
     `$ docker-compose up` or                                
     `$ docker-compose up -d`                                       
-                                                                              
+
 - Finally, visit `http://dev.my-app.com` in your web browser to preview your app.
 
                                                                      
