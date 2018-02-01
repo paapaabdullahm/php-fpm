@@ -151,8 +151,8 @@ services:
 - Step 7: Lookup the ip address of your nginx-proxy service    
     ```shell
     $ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nginx-proxy
-    ```                             
-
+    ```                            
+&nbsp;                                                                        
 - Step 8: Open your /etc/hosts file and append your domain and nginx-proxy ip to it as follows    
     `<ip-nginx-proxy>   dev.my-app.com`                             
                                                                  
