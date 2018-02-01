@@ -149,9 +149,9 @@ services:
     Notice we've substituted the service name `my-app` for the `fastcgi_pass` directive above. Make sure you are using the same name inside the compose file you created previously.
 
 - Step 7: Lookup the ip address of your nginx-proxy service    
-```shell
+    ```shell
     $ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nginx-proxy
-```                             
+    ```                             
 
 - Step 8: Open your /etc/hosts file and append your domain and nginx-proxy ip to it as follows    
     `<ip-nginx-proxy>   dev.my-app.com`                             
