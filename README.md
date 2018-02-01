@@ -151,14 +151,14 @@ services:
 - Step 7: Lookup the ip address of your nginx-proxy service    
     `$ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nginx-proxy`                             
 
-- Step 7: Open your /etc/hosts file and append your domain and nginx-proxy ip to it as follows    
+- Step 8: Open your /etc/hosts file and append your domain and nginx-proxy ip to it as follows    
     `<ip-nginx-proxy>   dev.my-app.com`                             
                                                                  
-- Step 8: Run your app at the forground or background                          
+- Step 9: Run your app at the forground or background                          
     `$ docker-compose up` or                                
     `$ docker-compose up -d`                                       
 
-- Finally, visit `http://dev.my-app.com` in your web browser to preview your app.
+- Step 10: Visit `http://dev.my-app.com` in your web browser to preview your app.
 
                                                                      
 # Extensions enabled in addition to core                                       
