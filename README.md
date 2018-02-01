@@ -2,7 +2,7 @@
                                                                               
 PHP-FPM (FastCGI Process Manager) is an alternative PHP FastCGI implementation with some additional features useful for sites of any size, especially busier sites. It also comes bundled with the php cli tool.                                                                      
                                                                                
-**Docker Pull Command**
+**Docker Pull Command**                                                       
     docker pull pam79/php-fpm                                                  
                                                                                
 # Usage                                                                    
