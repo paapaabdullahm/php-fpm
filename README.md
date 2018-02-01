@@ -117,7 +117,7 @@ services:
         external:
           name: proxy-tier
     ``` 
-    Notice in `volumes` under the service `nginx-proxy`, we've mapped a `default.conf` file from our app into the container which we need to create. 
+    Notice in `volumes` under the `nginx-proxy` service, we've mapped a `default.conf` file from our app into the container which we need to create. 
 
 - Step 5: Create an nginx default.conf file for your app                    
     `$ touch default.conf`
