@@ -103,7 +103,7 @@ services:
         volumes_from:
           - my-app
         environment:
-          - "VIRTUAL_HOST=my-app.dev"
+          - "VIRTUAL_HOST=dev.my-app.com"
         tty: true
         stdin_open: true
         networks: 
@@ -117,8 +117,9 @@ services:
         external:
           name: proxy-tier
     ``` 
-&nbsp;                                                                         
-- Step 5: Create a default.conf file for nginx                          
+    Notice in `volumes` under the service `nginx-proxy`, we've mapped a `default.conf` file from our app into the container which we need to create. 
+
+- Step 5: Create a default.conf file for nginx-proxy                    
     `$ touch default.conf`
                                                    
 - Step 6: Add the following content to it                       
@@ -126,7 +127,7 @@ services:
     ```nginx 
     server {
         listen 0.0.0.0:80;
-        server_name my-app.dev;
+        server_name dev.my-app.com;
 
         index index.php index.html;
         root /usr/share/nginx/html;
@@ -147,10 +148,17 @@ services:
     ```
     Notice we've substituted the service name `my-app` for the `fastcgi_pass` directive above. Make sure you are using the same name inside the compose file you created previously.
 
-- Step 7: Open your /etc/hosts file and append `my-app.dev` to it as follows    
-    `<ip-address>   my-app.dev`                             
+- Step 7: Lookup the ip address of your nginx-proxy service    
+    `$ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' nginx-proxy`                             
+
+- Step 7: Open your /etc/hosts file and append your domain and nginx-proxy ip to it as follows    
+    `<ip-nginx-proxy>   dev.my-app.com`                             
                                                                  
-- Finally, visit `http://my-app.dev` in your web browser to preview your app.
+- Step 8: Run your app at the forground or background                          
+    `$ docker-compose up` or                                
+    `$ docker-compose up -d`                                       
+                                                                              
+- Finally, visit `http://dev.my-app.com` in your web browser to preview your app.
 
                                                                      
 # Extensions enabled in addition to core                                       
