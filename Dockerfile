@@ -1,6 +1,5 @@
-FROM php:7.2.1-fpm
-
-MAINTAINER Abdullah Morgan <paapaabdullahm@gmail.com>
+FROM php:7.2-fpm
+LABEL maintainer="Abdullah Morgan paapaabdullahm@gmail.com"
 
 # Setup essential pkgs & libs via apt
 RUN apt update && apt upgrade -y; \
@@ -40,7 +39,7 @@ RUN apt update && apt upgrade -y; \
     ucf \
     --no-install-recommends; \
     #
-    # Setup libpng via dpkg 
+    # Setup libpng via dpkg
     wget http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.54-1ubuntu1_amd64.deb; \
     dpkg -i libpng12-0_1.2.54-1ubuntu1_amd64.deb; apt install -f; \
     rm -f libpng12-0_1.2.54-1ubuntu1_amd64.deb; \
