@@ -1,5 +1,4 @@
 FROM php:7.2-fpm
-
 LABEL maintainer="Abdullah Morgan paapaabdullahm@gmail.com"
 
 # Setup essential pkgs & libs via apt
