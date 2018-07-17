@@ -37,6 +37,7 @@ RUN apt update && apt upgrade -y; \
     mysql-client \
     re2c \
     ucf \
+    wget \
     --no-install-recommends; \
     #
     # Setup libpng via dpkg
