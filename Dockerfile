@@ -92,6 +92,7 @@ RUN apt update && apt upgrade -y; \
     tidy \
     tokenizer \
     wddx \
+    wget \
     xml \
     xmlrpc \
     xmlwriter \
