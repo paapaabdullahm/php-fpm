@@ -35,7 +35,6 @@ RUN apt update && apt upgrade -y; \
     libxml2-dev \
     libxslt-dev \
     mysql-client \
-    php7.0-mysql \
     re2c \
     ucf \
     unzip \
