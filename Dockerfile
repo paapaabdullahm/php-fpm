@@ -37,7 +37,9 @@ RUN apt update && apt upgrade -y; \
     mysql-client \
     re2c \
     ucf \
+    unzip \
     wget \
+    zip \
     --no-install-recommends; \
     #
     # Setup libpng via dpkg
@@ -104,7 +106,7 @@ RUN apt update && apt upgrade -y; \
     #
     # Setup php extensions via pecl
     yes | pecl install imagick xdebug mongodb; \
-    docker-php-ext-enable imagick xdebug mongodb; \
+    docker-php-ext-enable mysqli imagick xdebug mongodb; \
     usermod -u 1000 www-data; \
     rm -rf /var/lib/apt/lists/*;
 
