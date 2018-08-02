@@ -2,7 +2,7 @@
 
 PHP-FPM (FastCGI Process Manager) is an alternative PHP FastCGI implementation with some additional features useful for sites of any size, especially busier sites. It also comes bundled with the php cli tool.
 
-Current Version: v7.2.8
+The current version is **`v7.2.8`**
 
 **Docker Pull Command**
 
@@ -182,7 +182,7 @@ Step 8: Open your /etc/hosts file and append your domain and nginx-proxy ip to i
 <ip-nginx-proxy>   dev.my-app.com
 ```
 
-Step 9: Run your app at the forground or background
+Step 9: Run your app at the foreground or background
 ```
 $ docker-compose up
 $ docker-compose up -d
@@ -219,9 +219,9 @@ Step 10: Visit `http://dev.my-app.com` in your web browser to preview your app.
 23. ldap
 24. libxml
 25. mbstring
-26. mcrypt
+26. mcrypt (deprecated and removed in favour of openssl)
 27. mongodb
-28. mysqli (not available in php v7.2)
+28. mysqli
 29. mysqlnd
 30. openssl
 31. pcntl
@@ -243,24 +243,25 @@ Step 10: Visit `http://dev.my-app.com` in your web browser to preview your app.
 47. SimpleXML
 48. soap
 49. sockets
-50. SPL
-51. sqlite3
-52. standard
-53. sysvmsg
-54. sysvsem
-55. sysvshm
-56. tidy
-57. tokenizer
-58. wddx
-59. xdebug
-60. xml
-61. xmlreader
-62. xmlrpc
-63. xmlwriter
-64. xsl
-65. Zend OPcache
-66. zip
-67. zlib
+50. sodium
+51. SPL
+52. sqlite3
+53. standard
+54. sysvmsg
+55. sysvsem
+56. sysvshm
+57. tidy
+58. tokenizer
+59. wddx
+60. xdebug
+61. xml
+62. xmlreader
+63. xmlrpc
+64. xmlwriter
+65. xsl
+66. Zend OPcache
+67. zip
+68. zlib
 
 [Zend Modules]
 1. Xdebug
