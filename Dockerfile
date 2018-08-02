@@ -1,8 +1,9 @@
 FROM php:7.2-fpm
 LABEL maintainer="Abdullah Morgan paapaabdullahm@gmail.com"
 
-# Setup essential pkgs & libs via apt
-RUN apt update && apt upgrade -y; \
+# Setup build dependencies
+RUN set -ex; \
+    apt update && apt upgrade -y; \
     apt install -y \
     apt-utils \
     aspell-en \
@@ -32,7 +33,9 @@ RUN apt update && apt upgrade -y; \
     libsqlite3-dev \
     libssl-dev \
     libtidy-dev \
+    libwebp-dev \
     libxml2-dev \
+    libxpm-dev \
     libxslt-dev \
     mysql-client \
     re2c \
@@ -47,10 +50,24 @@ RUN apt update && apt upgrade -y; \
     dpkg -i libpng12-0_1.2.54-1ubuntu1_amd64.deb; apt install -f; \
     rm -f libpng12-0_1.2.54-1ubuntu1_amd64.deb; \
     #
-    # Setup php extensions via docker-php-ext
-    docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/; \
+    # Configure php extensions
+    docker-php-ext-configure gd \
+      --with-freetype-dir=/usr/include/ \
+      --with-jpeg-dir=/usr/include/ \
+      --with-webp-dir=/usr/include/ \
+      --with-png-dir=/usr/include/ \
+      --with-xpm-dir=/usr/include/; \
     docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
     docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu; \
+    docker-php-ext-configure bcmath --enable-bcmath; \
+    docker-php-ext-configure intl --enable-intl; \
+    docker-php-ext-configure pcntl --enable-pcntl; \
+    docker-php-ext-configure pdo_mysql --with-pdo-mysql; \
+    docker-php-ext-configure pdo_pgsql --with-pgsql; \
+    docker-php-ext-configure mbstring --enable-mbstring; \
+    docker-php-ext-configure soap --enable-soap; \
+    #
+    # Install php extensions
     docker-php-ext-install \
     bcmath \
     calendar \
@@ -95,7 +112,6 @@ RUN apt update && apt upgrade -y; \
     tidy \
     tokenizer \
     wddx \
-    wget \
     xml \
     xmlrpc \
     xmlwriter \
