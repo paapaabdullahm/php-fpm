@@ -37,7 +37,7 @@ RUN set -ex; \
     libxml2-dev \
     libxpm-dev \
     libxslt-dev \
-    mysql-client \
+    mariadb-client \
     re2c \
     ucf \
     unzip \
