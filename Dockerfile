@@ -12,8 +12,8 @@ RUN set -ex; \
     firebird-dev \
     libc-client-dev \
     libc6 \
-    libcurl3 \
-    libcurl3-dev \
+    libcurl4 \
+    libcurl4-openssl-dev \
     libfreetype6-dev \
     libgmp-dev \
     libgmp10 \
