@@ -1,5 +1,5 @@
-FROM php:7.2-fpm
-LABEL maintainer="Abdullah Morgan paapaabdullahm@gmail.com"
+FROM php:7.3.9-fpm
+LABEL maintainer="Abdullah Morgan <paapaabdullahm@gmail.com>"
 
 # Setup build dependencies
 RUN set -ex; \
