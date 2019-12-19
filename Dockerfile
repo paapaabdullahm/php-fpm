@@ -109,7 +109,6 @@ RUN set -ex; \
     sysvshm \
     tidy \
     tokenizer \
-    wddx \
     xml \
     xmlrpc \
     xmlwriter \
