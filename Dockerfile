@@ -26,6 +26,7 @@ RUN set -ex; \
     libmagickwand-dev \
     libmcrypt-dev \
     libmhash-dev \
+    libonig-dev \
     libpng-dev \
     libpq-dev \
     libpspell-dev \
