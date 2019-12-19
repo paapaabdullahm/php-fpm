@@ -35,6 +35,7 @@ RUN set -ex; \
     libsqlite3-0 \
     libsqlite3-dev \
     libssl-dev \
+    libsslcommon2-dev \
     libtidy-dev \
     libwebp-dev \
     libxml2-dev \
@@ -42,6 +43,7 @@ RUN set -ex; \
     libxslt-dev \
     libzip-dev \
     mariadb-client \
+    pkg-config \
     re2c \
     ucf \
     unzip \
