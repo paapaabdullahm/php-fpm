@@ -124,8 +124,8 @@ RUN set -ex; \
     ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/; \
     #
     # Setup php extensions via pecl
-    yes | pecl install imagick xdebug mongodb; \
-    docker-php-ext-enable mysqli pdo_mysql pdo_firebird pdo_pgsql imagick xdebug mongodb; \
+    yes | pecl install imagick xdebug mongodb redis; \
+    docker-php-ext-enable mysqli pdo_mysql pdo_firebird pdo_pgsql imagick xdebug mongodb redis; \
     usermod -u 1000 www-data; \
     rm -rf /var/lib/apt/lists/*;
 
