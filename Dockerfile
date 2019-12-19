@@ -1,4 +1,4 @@
-FROM php:7.4.1-fpm
+FROM php:7.4-fpm
 LABEL maintainer="Paapa Abdullah Morgan <paapaabdullahm@gmail.com>"
 
 # Install persistent build dependencies
