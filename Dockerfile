@@ -99,7 +99,6 @@ RUN set -ex; \
     phar \
     posix \
     pspell \
-    recode \
     session \
     shmop \
     simplexml \
