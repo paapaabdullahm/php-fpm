@@ -57,8 +57,7 @@ RUN set -ex; \
     #
     # Configure php extensions
     PHP_OPENSSL=yes docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
-    docker-php-ext-configure gd --enable-shared --with-php-config=/usr/local/bin/php-config --with-freetype; \
-    #--with-zlib-dir=shared --with-webp-dir=shared --with-jpeg-dir=shared --with-png-dir=shared --with-xpm-dir=shared; \
+    #docker-php-ext-configure gd --enable-shared --with-php-config=/usr/local/bin/php-config --with-freetype --with-zlib-dir=shared --with-webp-dir=shared --with-jpeg-dir=shared --with-png-dir=shared --with-xpm-dir=shared; \
     docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu; \
     docker-php-ext-configure bcmath --enable-bcmath; \
     docker-php-ext-configure intl --enable-intl; \
@@ -115,7 +114,7 @@ RUN set -ex; \
     xmlwriter \
     xsl \
     zip \
-    -j$(nproc) intl gd; \
+    -j$(nproc) intl; \
     ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/; \
     #
     # Setup php extensions via pecl
