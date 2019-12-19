@@ -10,6 +10,7 @@ RUN set -ex; \
     curl \
     file \
     firebird-dev \
+    ghostscript \
     libc-client-dev \
     libc6 \
     libcurl4 \
@@ -25,6 +26,7 @@ RUN set -ex; \
     libmagickwand-dev \
     libmcrypt-dev \
     libmhash-dev \
+    libpng-dev \
     libpq-dev \
     libpspell-dev \
     librecode-dev \
