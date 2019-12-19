@@ -35,7 +35,6 @@ RUN set -ex; \
     libsqlite3-0 \
     libsqlite3-dev \
     libssl-dev \
-    libsslcommon2-dev \
     libtidy-dev \
     libwebp-dev \
     libxml2-dev \
