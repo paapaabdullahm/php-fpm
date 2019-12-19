@@ -42,7 +42,6 @@ RUN set -ex; \
     libxslt-dev \
     libzip-dev \
     mariadb-client \
-    pkg-config \
     re2c \
     ucf \
     unzip \
@@ -56,8 +55,8 @@ RUN set -ex; \
     rm -f libpng12-0_1.2.54-1ubuntu1_amd64.deb; \
     #
     # Configure php extensions
-    docker-php-ext-configure gd; \
-    docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
+
+    PHP_OPENSSL=yes docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
     docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu; \
     docker-php-ext-configure bcmath --enable-bcmath; \
     docker-php-ext-configure intl --enable-intl; \
@@ -66,6 +65,7 @@ RUN set -ex; \
     docker-php-ext-configure pdo_pgsql --with-pgsql; \
     docker-php-ext-configure mbstring --enable-mbstring; \
     docker-php-ext-configure soap --enable-soap; \
+    docker-php-ext-configure gd; \
     #
     # Install php extensions
     docker-php-ext-install \
