@@ -54,7 +54,7 @@ RUN set -ex; \
     rm -f libpng12-0_1.2.54-1ubuntu1_amd64.deb; \
     #
     # Configure php extensions
-    docker-php-ext-configure gd --with-freetype-dir=/usr --with-jpeg-dir=/usr --with-png-dir=/usr; \
+    docker-php-ext-configure gd --with-gd --with-webp-dir --with-jpeg-dir --with-png-dir --with-zlib-dir --with-xpm-dir --with-freetype-dir --enable-gd-native-ttf; \
     docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
     docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu; \
     docker-php-ext-configure bcmath --enable-bcmath; \
