@@ -56,10 +56,9 @@ RUN set -ex; \
     rm -f libpng12-0_1.2.54-1ubuntu1_amd64.deb; \
     #
     # Configure php extensions
-    PHP_OPENSSL=yes; \
+    PHP_OPENSSL=yes docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
     docker-php-ext-configure gd --enable-shared --with-php-config=/usr/local/bin/php-config --with-freetype; \
     #--with-zlib-dir=shared --with-webp-dir=shared --with-jpeg-dir=shared --with-png-dir=shared --with-xpm-dir=shared; \
-    docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
     docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu; \
     docker-php-ext-configure bcmath --enable-bcmath; \
     docker-php-ext-configure intl --enable-intl; \
