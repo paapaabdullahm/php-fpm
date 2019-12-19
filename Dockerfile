@@ -62,7 +62,7 @@ RUN set -ex; \
     docker-php-ext-configure intl --enable-intl; \
     docker-php-ext-configure pcntl --enable-pcntl; \
     docker-php-ext-configure pdo_mysql --with-pdo-mysql; \
-    docker-php-ext-configure pdo_pgsql --with-pgsql=/usr/local/pgsql; \
+    docker-php-ext-configure pdo_pgsql --with-pdo-pgsql; \
     docker-php-ext-configure mbstring --enable-mbstring; \
     docker-php-ext-configure soap --enable-soap; \
     docker-php-ext-configure gd; \
