@@ -57,7 +57,7 @@ RUN set -ex; \
     #
     # Configure php extensions
     PHP_OPENSSL=yes; \
-    docker-php-ext-configure gd --enable-shared --with-php-config=/usr/local/bin/php-config --with-gd --with-freetype-dir=shared,/usr --with-zlib-dir=shared,/usr --with-webp-dir=shared,/usr --with-jpeg-dir=shared,/usr --with-png-dir=shared,/usr --with-xpm-dir=shared,/usr/lib/X11; \
+    docker-php-ext-configure gd --enable-shared --with-php-config=/usr/local/bin/php-config --with-freetype-dir=shared --with-zlib-dir=shared --with-webp-dir=shared --with-jpeg-dir=shared --with-png-dir=shared --with-xpm-dir=shared; \
     docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
     docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu; \
     docker-php-ext-configure bcmath --enable-bcmath; \
