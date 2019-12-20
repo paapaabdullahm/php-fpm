@@ -111,7 +111,6 @@ RUN set -ex; \
     sysvsem \
     sysvshm \
     tidy \
-    unzip \
     xmlrpc \
     xsl \
     zip \
