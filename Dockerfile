@@ -108,9 +108,9 @@ RUN set -ex; \
     shmop \
     soap \
     sockets \
-        sysvmsg \
-        sysvsem \
-        sysvshm \
+    sysvmsg \
+    sysvsem \
+    sysvshm \
     tidy \
     xmlrpc \
     xsl \
@@ -118,10 +118,10 @@ RUN set -ex; \
 	; \
 	#
     # Install php extensions via pecl
-	pecl install imagick-3.4.4 yaml-2.0.4; \
+	yes | pecl install imagick-3.4.4 yaml-2.0.4 xdebug mongodb redis; \
 	#
 	# Enable pecl installed php extensions
-	docker-php-ext-enable imagick yaml; \
+	docker-php-ext-enable imagick yaml xdebug mongodb redis; \
     #
     # Reset apt-mark
 	apt-mark auto '.*' > /dev/null; \
