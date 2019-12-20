@@ -55,7 +55,6 @@ RUN set -ex; \
     libxslt-dev \
     libyaml-dev \
     libzip-dev \
-    php-dev \
 	; \
 	#
     # Configure php extensions
