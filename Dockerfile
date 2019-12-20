@@ -90,10 +90,10 @@ RUN set -ex; \
     ctype \
     curl \
     exif \
-        ftp \
+    ftp \
     gd \
-        gettext \
-        gmp \
+    gettext \
+    gmp \
     imap \
     intl \
     ldap \
@@ -104,16 +104,16 @@ RUN set -ex; \
     pdo_mysql \
     pdo_pgsql \
     pdo_sqlite \
-        #pspell \
-        #shmop \
+        pspell \
+        shmop \
     soap \
-        #sockets \
+        sockets \
         #sysvmsg \
         #sysvsem \
         #sysvshm \
-        #tidy \
-        #xmlrpc \
-        #xsl \
+        tidy \
+        xmlrpc \
+        xsl \
     zip \
 	; \
 	#
