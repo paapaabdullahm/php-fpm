@@ -55,22 +55,40 @@ RUN set -ex; \
 	; \
 	#
     # Configure php extensions
+    PHP_OPENSSL=yes \
+    docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
 	docker-php-ext-configure gd --with-freetype --with-jpeg; \
+    docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu; \
+    docker-php-ext-configure bcmath --enable-bcmath; \
+    docker-php-ext-configure intl --enable-intl; \
+    docker-php-ext-configure pdo_mysql --with-pdo-mysql; \
+    docker-php-ext-configure pdo_pgsql --with-pdo-pgsql; \
+    docker-php-ext-configure mbstring --enable-mbstring; \
+    docker-php-ext-configure soap --enable-libxml --enable-soap; \
 	#
     # Install php extensions
 	docker-php-ext-install -j "$(nproc)" \
     bcmath \
     exif \
     gd \
+    imap \
+    intl \
+    ldap \
+    mbstring \
     mysqli \
     opcache \
+    pdo \
+    pdo_mysql \
+    pdo_pgsql \
+    pdo_sqlite \
+    soap \
     zip \
 	; \
 	#
     # Install php extensions via pecl
 	pecl install imagick-3.4.4; \
 	#
-	# Enable installed php extensions
+	# Enable pecl installed php extensions
 	docker-php-ext-enable imagick; \
     #
     # Reset apt-mark
