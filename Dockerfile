@@ -13,7 +13,6 @@ RUN set -eux; \
     libcurl4 \
     libgmp10 \
     libsqlite3-0 \
-    libtidy5 \
     libyaml-0-2 \
     mariadb-client \
     pkg-config \
@@ -21,6 +20,7 @@ RUN set -eux; \
     ucf \
     unzip \
     wget \
+    tidy \
     zip \
 	; \
 	rm -rf /var/lib/apt/lists/*
