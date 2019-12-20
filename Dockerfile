@@ -60,6 +60,7 @@ RUN set -ex; \
 	docker-php-ext-configure gd --with-freetype --with-jpeg; \
     docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu; \
     docker-php-ext-configure bcmath --enable-bcmath; \
+    docker-php-ext-configure gmp --with-gmp; \
     docker-php-ext-configure intl --enable-intl; \
     docker-php-ext-configure pdo_mysql --with-pdo-mysql; \
     docker-php-ext-configure pdo_pgsql --with-pdo-pgsql; \
@@ -69,10 +70,22 @@ RUN set -ex; \
     # Install php extensions
 	docker-php-ext-install -j "$(nproc)" \
     bcmath \
+        calendar \
+        ctype \
+        curl \
+        dba \
+        dom \
     exif \
+        fileinfo \
+        ftp \
     gd \
+        gettext \
+        gmp \
+        hash \
+        iconv \
     imap \
     intl \
+        json \
     ldap \
     mbstring \
     mysqli \
@@ -81,7 +94,23 @@ RUN set -ex; \
     pdo_mysql \
     pdo_pgsql \
     pdo_sqlite \
+        phar \
+        posix \
+        pspell \
+        session \
+        shmop \
+        simplexml \
     soap \
+        sockets \
+        sysvmsg \
+        sysvsem \
+        sysvshm \
+        tidy \
+        tokenizer \
+        xml \
+        xmlrpc \
+        xmlwriter \
+        xsl \
     zip \
 	; \
 	#
