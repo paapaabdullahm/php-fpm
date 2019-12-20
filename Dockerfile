@@ -9,7 +9,6 @@ RUN set -eux; \
     curl \
     file \
     ghostscript \
-    libbz2-1.0 \
     libc6 \
     libcurl4 \
     libgmp10 \
@@ -19,7 +18,6 @@ RUN set -eux; \
     pkg-config \
     re2c \
     ucf \
-    unzip \
     wget \
     tidy \
     zip \
