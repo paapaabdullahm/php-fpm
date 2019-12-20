@@ -86,14 +86,14 @@ RUN set -ex; \
     # Install php extensions
 	docker-php-ext-install -j "$(nproc)" \
     bcmath \
-        calendar \
-        ctype \
-        curl \
+    calendar \
+    ctype \
+    curl \
     exif \
-        #ftp \
+        ftp \
     gd \
-        #gettext \
-        #gmp \
+        gettext \
+        gmp \
     imap \
     intl \
     ldap \
