@@ -13,6 +13,8 @@ RUN set -eux; \
     libcurl4 \
     libgmp10 \
     libsqlite3-0 \
+    libtidy5 \
+    libyaml-0-2 \
     mariadb-client \
     pkg-config \
     re2c \
@@ -51,6 +53,7 @@ RUN set -ex; \
     libxml2-dev \
     libxpm-dev \
     libxslt-dev \
+    libyaml-dev \
     libzip-dev \
 	; \
 	#
@@ -60,12 +63,25 @@ RUN set -ex; \
 	docker-php-ext-configure gd --with-freetype --with-jpeg; \
     docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu; \
     docker-php-ext-configure bcmath --enable-bcmath; \
+    docker-php-ext-configure calendar --enable-calendar; \
+    docker-php-ext-configure curl --with-curl; \
+    docker-php-ext-configure ftp --enable-ftp; \
+    docker-php-ext-configure gettext --with-gettext; \
     docker-php-ext-configure gmp --with-gmp; \
     docker-php-ext-configure intl --enable-intl; \
     docker-php-ext-configure pdo_mysql --with-pdo-mysql; \
     docker-php-ext-configure pdo_pgsql --with-pdo-pgsql; \
+    docker-php-ext-configure pspell --with-pspell; \
     docker-php-ext-configure mbstring --enable-mbstring; \
+    docker-php-ext-configure shmop --enable-shmop; \
     docker-php-ext-configure soap --enable-soap; \
+    docker-php-ext-configure sockets --enable-sockets; \
+    docker-php-ext-configure sysvmsg --enable-sysvmsg; \
+    docker-php-ext-configure sysvsem --enable-sysvsem; \
+    docker-php-ext-configure sysvshm --enable-sysvshm; \
+    docker-php-ext-configure tidy --with-tidy; \
+    docker-php-ext-configure xmlrpc --with-xmlrpc; \
+    docker-php-ext-configure xsl --with-xsl; \
 	#
     # Install php extensions
 	docker-php-ext-install -j "$(nproc)" \
@@ -73,19 +89,13 @@ RUN set -ex; \
         calendar \
         ctype \
         curl \
-        dba \
-        dom \
     exif \
-        fileinfo \
-        ftp \
+        #ftp \
     gd \
-        gettext \
-        gmp \
-        hash \
-        iconv \
+        #gettext \
+        #gmp \
     imap \
     intl \
-        json \
     ldap \
     mbstring \
     mysqli \
@@ -94,31 +104,24 @@ RUN set -ex; \
     pdo_mysql \
     pdo_pgsql \
     pdo_sqlite \
-        phar \
-        posix \
-        pspell \
-        session \
-        shmop \
-        simplexml \
+        #pspell \
+        #shmop \
     soap \
-        sockets \
-        sysvmsg \
-        sysvsem \
-        sysvshm \
-        tidy \
-        tokenizer \
-        xml \
-        xmlrpc \
-        xmlwriter \
-        xsl \
+        #sockets \
+        #sysvmsg \
+        #sysvsem \
+        #sysvshm \
+        #tidy \
+        #xmlrpc \
+        #xsl \
     zip \
 	; \
 	#
     # Install php extensions via pecl
-	pecl install imagick-3.4.4; \
+	pecl install imagick-3.4.4 yaml-2.0.4; \
 	#
 	# Enable pecl installed php extensions
-	docker-php-ext-enable imagick; \
+	docker-php-ext-enable imagick yaml; \
     #
     # Reset apt-mark
 	apt-mark auto '.*' > /dev/null; \
