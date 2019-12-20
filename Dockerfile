@@ -104,16 +104,16 @@ RUN set -ex; \
     pdo_mysql \
     pdo_pgsql \
     pdo_sqlite \
-        pspell \
-        shmop \
+    pspell \
+    shmop \
     soap \
-        sockets \
-        #sysvmsg \
-        #sysvsem \
-        #sysvshm \
-        tidy \
-        xmlrpc \
-        xsl \
+    sockets \
+        sysvmsg \
+        sysvsem \
+        sysvshm \
+    tidy \
+    xmlrpc \
+    xsl \
     zip \
 	; \
 	#
