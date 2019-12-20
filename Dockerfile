@@ -9,6 +9,7 @@ RUN set -eux; \
     curl \
     file \
     ghostscript \
+    libbz2-1.0 \
     libc6 \
     libcurl4 \
     libgmp10 \
