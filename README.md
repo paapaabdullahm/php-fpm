@@ -184,7 +184,7 @@ services:
     ports:
       - "6379:6379"
     networks:
-      - app-tier
+      - cache-tier
     depends_on:
       - app-svc
     restart: always
@@ -203,7 +203,8 @@ services:
     ports:
       - "9000:9000"
     networks:
-      - app-tier
+      - proxy-tier
+      - cache-tier
       - db-tier
     restart: always
 
@@ -232,9 +233,9 @@ networks:
   proxy-tier:
     external:
       name: proxy-tier
-  app-tier:
+  cache-tier:
     external:
-      name: app-tier
+      name: cache-tier
   db-tier:
     external:
       name: db-tier
@@ -275,7 +276,7 @@ server {
 Create external networks
 ```shell
 $ docker network create proxy-tier
-$ docker network create app-tier
+$ docker network create cache-tier
 $ docker network create db-tier
 ```
 
@@ -304,4 +305,4 @@ To run your app at the background
 $ docker-compose up -d
 ```
 
-Finally, visit `http://dev.myapp.com` in your web browser to preview your app. You can also setup [Browsersync](https://www.browsersync.io/) for your project if you want to auto reload your browser when you edit your app.
+Finally, visit `http://dev.myapp.com` in your web browser to preview your app. You can also setup [Browsersync](https://www.browsersync.io/) for your project if you want to auto reload your browser whenever you edit your app.
