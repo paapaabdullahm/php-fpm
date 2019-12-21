@@ -1,4 +1,4 @@
-FROM php:7.4-fpm
+FROM php:7.4.1-fpm
 LABEL maintainer="Paapa Abdullah Morgan <paapaabdullahm@gmail.com>"
 
 # Install persistent build dependencies
@@ -124,15 +124,6 @@ RUN set -ex; \
     # Install and enable other php extensions via pecl
 	yes | pecl install imagick-3.4.4 yaml-2.0.4 xdebug mongodb redis; \
 	docker-php-ext-enable imagick yaml xdebug mongodb redis; \
-	#
-	# Install redis extension from source
-	#ext_dir="$(php -r 'echo ini_get("extension_dir");')"; \
-	#wget https://github.com/phpredis/phpredis/archive/5.1.1.zip -O phpredis.zip; \
-	#unzip -q phpredis-5.1.1.zip; \
-	#cd phpredis-5.1.1 \
-	#&& phpize \
-	#&& ./configure --enable-redis-igbinary --enable-redis-lzf --enable-redis-zstd \
-	#&& make && make install; \
     #
     # Reset apt-mark
 	apt-mark auto '.*' > /dev/null; \
@@ -150,7 +141,9 @@ RUN set -ex; \
 	rm -rf /var/lib/apt/lists/*; pecl update-channels; rm -rf /tmp/pear ~/.pearrc; \
 	#
 	# Smoke test
-    php --version
+    php --version; \
+    echo "==============================================================="; \
+    php -m
 
 # Set recommended opcache php.ini settings
 RUN { \
