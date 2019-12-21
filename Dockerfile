@@ -2,9 +2,7 @@ FROM php:7.4.1-fpm
 LABEL maintainer="Paapa Abdullah Morgan <paapaabdullahm@gmail.com>"
 
 # Install persistent build dependencies
-RUN set -eux; \
-	apt update; \
-	apt install -y --no-install-recommends \
+RUN set -eux; apt update; apt install -y --no-install-recommends \
     aspell-en \
     curl \
     file \
@@ -21,16 +19,13 @@ RUN set -eux; \
     ucf \
     wget \
     tidy \
-    zip \
-	; \
-	rm -rf /var/lib/apt/lists/*
+    zip; \
+    rm -rf /var/lib/apt/lists/*
 
 # Install ephemeral build dependencies
-RUN set -ex; \
-	savedAptMark="$(apt-mark showmanual)"; \
-	apt update; \
-	apt install -y --no-install-recommends \
-	libc-client-dev \
+RUN set -ex; savedAptMark="$(apt-mark showmanual)"; \
+    apt update; apt install -y --no-install-recommends \
+    libc-client-dev \
     libcurl4-openssl-dev \
     libfreetype6-dev \
     libgmp-dev \
@@ -55,13 +50,12 @@ RUN set -ex; \
     libxslt-dev \
     libyaml-dev \
     libzip-dev \
-    libzstd-dev \
-	; \
-	#
+    libzstd-dev; \
+    #
     # Configure php extensions
     PHP_OPENSSL=yes \
     docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
-	docker-php-ext-configure gd --with-freetype --with-jpeg; \
+    docker-php-ext-configure gd --with-freetype --with-jpeg; \
     docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu; \
     docker-php-ext-configure bcmath --enable-bcmath; \
     docker-php-ext-configure calendar --enable-calendar; \
@@ -83,9 +77,9 @@ RUN set -ex; \
     docker-php-ext-configure tidy --with-tidy; \
     docker-php-ext-configure xmlrpc --with-xmlrpc; \
     docker-php-ext-configure xsl --with-xsl; \
-	#
+    #
     # Install php extensions
-	docker-php-ext-install -j "$(nproc)" \
+    docker-php-ext-install -j "$(nproc)" \
     bcmath \
     calendar \
     ctype \
@@ -115,33 +109,32 @@ RUN set -ex; \
     tidy \
     xmlrpc \
     xsl \
-    zip \
-	; \
-	#
-	# Install and enable redis dependency via pecl
-	yes | pecl install igbinary; docker-php-ext-enable igbinary; \
-	#
+    zip ; \
+    #
+    # Install and enable redis dependency via pecl
+    yes | pecl install igbinary; docker-php-ext-enable igbinary; \
+    #
     # Install and enable other php extensions via pecl
-	yes | pecl install imagick-3.4.4 yaml-2.0.4 xdebug mongodb redis; \
-	docker-php-ext-enable imagick yaml xdebug mongodb redis; \
+    yes | pecl install imagick-3.4.4 yaml-2.0.4 xdebug mongodb redis; \
+    docker-php-ext-enable imagick yaml xdebug mongodb redis; \
     #
     # Reset apt-mark
-	apt-mark auto '.*' > /dev/null; \
-	apt-mark manual $savedAptMark; \
-	ldd "$(php -r 'echo ini_get("extension_dir");')"/*.so \
-		| awk '/=>/ { print $3 }' \
-		| sort -u \
-		| xargs -r dpkg-query -S \
-		| cut -d: -f1 \
-		| sort -u \
-		| xargs -rt apt-mark manual; \
-	#
+    apt-mark auto '.*' > /dev/null; \
+    apt-mark manual $savedAptMark; \
+    ldd "$(php -r 'echo ini_get("extension_dir");')"/*.so \
+        | awk '/=>/ { print $3 }' \
+        | sort -u \
+        | xargs -r dpkg-query -S \
+        | cut -d: -f1 \
+        | sort -u \
+        | xargs -rt apt-mark manual; \
+    #
     # Remove all build dependencies
-	apt purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
-	rm -rf /var/lib/apt/lists/*; pecl update-channels; rm -rf /tmp/pear ~/.pearrc; \
-	#
-	# Smoke test
-    php --version; php -m
+    apt purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
+    rm -rf /var/lib/apt/lists/*; pecl update-channels; rm -rf /tmp/pear ~/.pearrc; \
+    #
+    # Smoke test
+    php -m
 
 # Set recommended opcache php.ini settings
 RUN { \
