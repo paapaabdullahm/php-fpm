@@ -185,8 +185,6 @@ services:
       - "6379:6379"
     networks:
       - cache-tier
-    depends_on:
-      - app-svc
     restart: always
 
   app-svc:
@@ -196,6 +194,7 @@ services:
     volumes:
       - ./:/usr/share/nginx/html
     depends_on:
+      - redis-svc
       - mariadb-svc
     environment:
       - "DB_PORT=3306"
