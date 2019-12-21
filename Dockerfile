@@ -14,6 +14,7 @@ RUN set -eux; \
     libgmp10 \
     libsqlite3-0 \
     libyaml-0-2 \
+    libzstd1 \
     mariadb-client \
     pkg-config \
     re2c \
