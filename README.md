@@ -2,22 +2,24 @@
 
 PHP-FPM (FastCGI Process Manager) is an alternative PHP FastCGI implementation with some additional features useful for sites of any size, especially busier sites. It also comes bundled with the php cli tool.
 
-The current version is **`v7.3.9`**
+## Current Version/Tag: **`v7.4.1`**
 
-**Docker Pull Command**
+> The version with the `latest` tag keeps changing rapidly to mirror the latest PHP release. You are encouraged to pull images tagged with specific versions other than latest, which are more suitable for stable development and production deployments.
 
-    $ docker pull pam79/php-fpm
+## Docker Pull Command
 
-# Usage
+    $ docker pull pam79/php-fpm:v7.4.1
 
-### With docker run
+## Usage
+
+#### With docker run
 
 ```shell
-$ docker run -it --rm --name my-app -v "$PWD":/usr/src/my-app -w /usr/src/my-app pam79/php-fpm
+$ docker run -it --rm --name my-app -v "$PWD":/usr/src/my-app -w /usr/src/my-app pam79/php-fpm:v7.4.1
 ```
 &nbsp;
 
-#### To speed up things, let's create two aliases:
+**To speed up development, let's create two aliases:**
 
 First open your `.bashrc` file. If you are using zsh open your `.zshrc` file instead.
 ```shell
@@ -27,8 +29,8 @@ $ vim ~/.bashrc
 
 Add the following at the bottom of the file. The first alias is for php-fpm while the second is for php cli.
 ```shell
-alias php-fpm="docker run -it --rm -v "$PWD":/usr/src/my-app -w /usr/src/my-app pam79/php-fpm php-fpm"
-alias php="docker run -it --rm -v "$PWD":/usr/src/my-app -w /usr/src/my-app pam79/php-fpm php"
+alias php-fpm="docker run -it --rm -v "$PWD":/usr/src/my-app -w /usr/src/my-app pam79/php-fpm:v7.4.1 php-fpm"
+alias php="docker run -it --rm -v "$PWD":/usr/src/my-app -w /usr/src/my-app pam79/php-fpm:v7.4.1 php"
 ```
 &nbsp;
 
@@ -38,7 +40,7 @@ $ . ~/.bashrc
 ```
 &nbsp;
 
-#### Finally use the alias as regular php-fpm, and php binaries. Here are some examples:
+**Finally use the alias as regular php-fpm, and php binaries. Here are some examples:**
 
 If you are using it with Laravel, within your project root, you can easily do:
 ```
@@ -72,14 +74,14 @@ To run your app with the php internal server, you can do the following, with the
 $ php -t . -S <container-ip>:<port>
 ```
 
-### With docker-compose
+#### With docker-compose
 
 ```yml
 version: '2.1'
 
 services:
   my-app:
-    image: pam79/php-fpm
+    image: pam79/php-fpm:v7.4.1
     container_name: my-app
     working_dir: /app
     ports:
@@ -89,7 +91,7 @@ services:
     tty: true
 ```
 
-### With docker-compose and nginx as proxy
+#### With docker-compose and nginx as proxy
 
 Step 1: Create a network
 ```
@@ -113,7 +115,7 @@ version: '2.1'
 services:
 
   my-app:
-    image: pam79/php-fpm
+    image: pam79/php-fpm:v7.4.1
     container_name: my-app
     working_dir: /usr/share/nginx/html
     volumes:
@@ -190,80 +192,53 @@ $ docker-compose up -d
 
 Step 10: Visit `http://dev.my-app.com` in your web browser to preview your app.
 
-# Extensions enabled in addition to core
+## Extensions enabled in addition to Core
 
 ```list
-[PHP Modules]
+[Mainstream Modules]
 1. bcmath
 2. calendar
-3. Core
-4. ctype
-5. curl
-6. date
-7. dba
-8. dom
-9. exif
-10. fileinfo
-11. filter
-12. ftp
-13. gd
-14. gettext
-15. gmp
-16. hash
-17. iconv
-18. imagick
-19. imap
-20. interbase
-21. intl
-22. json
-23. ldap
-24. libxml
-25. mbstring
-26. mcrypt (deprecated and removed in favour of openssl)
-27. mongodb
-28. mysqli
-29. mysqlnd
-30. openssl
-31. pcntl
-32. pcre
-33. PDO
-34. PDO_Firebird
-35. pdo_mysql
-36. pdo_pgsql
-37. pdo_sqlite
-38. pgsql
-39. Phar
-40. posix
-41. pspell
-42. readline
-43. recode
-44. Reflection
-45. session
-46. shmop
-47. SimpleXML
-48. soap
-49. sockets
-50. sodium
-51. SPL
-52. sqlite3
-53. standard
-54. sysvmsg
-55. sysvsem
-56. sysvshm
-57. tidy
-58. tokenizer
-59. wddx
-60. xdebug
-61. xml
-62. xmlreader
-63. xmlrpc
-64. xmlwriter
-65. xsl
-66. Zend OPcache
-67. zip
-68. zlib
+3. ctype
+4. curl
+5. exif
+6. ftp
+7. gd
+8. gettext
+9. gmp
+10. imap
+11. intl
+12. ldap
+13. mbstring
+14. mysqli
+15. opcache
+16. pdo
+17. pdo_mysql
+18. pdo_pgsql
+19. pdo_sqlite
+20. pspell
+21. shmop
+22. soap
+23. sockets
+24. sysvmsg
+25. sysvsem
+26. sysvshm
+27. tidy
+28. xmlrpc
+29. xsl
+30. zip
 
-[Zend Modules]
-1. Xdebug
-2. Zend OPcache
+[PECL Modules]
+1. imagick
+2. mongodb
+3. redis
+4. xdebug
+5. yaml
+```
+
+## Extensions Excluded from PHP 7.4
+```list
+[Removed Extensions]
+1. Firebird/Interbase
+2. Recode
+3. WDDX
 ```
