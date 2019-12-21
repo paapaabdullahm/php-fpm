@@ -192,52 +192,77 @@ $ docker-compose up -d
 
 Step 10: Visit `http://dev.my-app.com` in your web browser to preview your app.
 
-## Extensions enabled in addition to Core
+## Enabled Extensions
 
 ```list
-[Mainstream Modules]
+[PHP Modules]
 1. bcmath
 2. calendar
-3. ctype
-4. curl
-5. exif
-6. ftp
-7. gd
-8. gettext
-9. gmp
-10. imap
-11. intl
-12. ldap
-13. mbstring
-14. mysqli
-15. opcache
-16. pdo
-17. pdo_mysql
-18. pdo_pgsql
-19. pdo_sqlite
-20. pspell
-21. shmop
-22. soap
-23. sockets
-24. sysvmsg
-25. sysvsem
-26. sysvshm
-27. tidy
-28. xmlrpc
-29. xsl
-30. zip
+3. Core
+4. ctype
+5. curl
+6. date
+7. dom
+8. exif
+9. fileinfo
+10. filter
+11. ftp
+12. gd
+13. gettext
+14. gmp
+15. hash
+16. iconv
+17. igbinary
+18. imagick
+19. imap
+20. intl
+21. json
+22. ldap
+23. libxml
+24. mbstring
+25. mongodb
+26. mysqli
+27. mysqlnd
+28. openssl
+29. pcre
+30. PDO
+31. pdo_mysql
+32. pdo_pgsql
+33. pdo_sqlite
+34. Phar
+35. posix
+36. pspell
+37. readline
+38. redis
+39. Reflection
+40. session
+41. shmop
+42. SimpleXML
+43. soap
+44. sockets
+45. sodium
+46. SPL
+47. sqlite3
+48. standard
+49. sysvmsg
+50. sysvsem
+51. sysvshm
+52. tidy
+53. tokenizer
+54. xml
+55. xmlreader
+56. xmlrpc
+57. xmlwriter
+58. xsl
+59. yaml
+60. zip
+61. zlib
 
-[PECL Modules]
-1. imagick
-2. mongodb
-3. redis
-4. xdebug
-5. yaml
-```
+[Zend Modules]
+1. Xdebug
+2. Zend OPcache
 
-## Extensions Excluded from PHP 7.4
-```list
-[Removed Extensions]
+[Removed Modules]
 1. Firebird/Interbase
 2. Recode
 3. WDDX
