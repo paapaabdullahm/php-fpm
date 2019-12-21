@@ -141,9 +141,7 @@ RUN set -ex; \
 	rm -rf /var/lib/apt/lists/*; pecl update-channels; rm -rf /tmp/pear ~/.pearrc; \
 	#
 	# Smoke test
-    php --version; \
-    echo "==============================================================="; \
-    php -m
+    php --version; php -m \
 
 # Set recommended opcache php.ini settings
 RUN { \
